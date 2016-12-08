@@ -1,0 +1,175 @@
+\documentclass[a4paper,11pt]{jreport}
+
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{amsthm}
+
+\newtheorem{definition}{定義}
+\newtheorem{theorem}{定理}
+
+\setcounter{tocdepth}{3}
+\setcounter{page}{-1}
+
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in} 
+\setlength{\topmargin}{0in}
+\setlength{\textwidth}{6in} 
+\setlength{\parskip}{0em}
+\setlength{\topsep}{0em}
+
+\usepackage{sie-jp}
+
+\title{単体上における非凸関数の大域的最適化}
+\author{千葉 竜介}
+\degree{修士（工学）}
+\advisor{久野 誉人}
+
+\majorfield{コンピュータサイエンス}
+\yearandmonth{2017年 3月}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{20pt plus 1fil}
+\parindent=1zw
+\noindent
+\begin{center}
+{\bf 概要}
+\vspace{5mm}
+\end{center}
+
+凸関数最適化問題と比較して非凸関数の最適化は一般的に困難であると言われている．その中でも，非凸関数の一種である単調関数（Monotonic function）の最適化を扱う．単調関数とは，入力の増加に対して関数値も常に増加または減少する関数のことである．そのような単調関数について，実行可能領域を単体（Simplex）とした場合の最適化を考える．\\
+本稿では，大域的最適化の手法としてよく利用されている分枝限定法を利用する．分枝限定法は実行可能領域の分割を繰り返し，たくさんの小さな問題を解く手法である．実行可能領域における関数値の下界と暫定解と比較することで，その領域に最適解が存在しうるかどうかを判断し，最適解が存在し得ない場合はその領域を削除して効率的に最適化を行う．したがって分枝限定法において，良い下界を与えること，効果的に実行可能領域を分割することは重要である．\\
+本稿では単体の新たな分割方法の提案を行い，その分割手法が生成する子領域の数の上限を示す．さらに，提案した分割手法を使った分枝限定法の実験を行い，提案手法を評価する．\\
+
+\par
+\vspace{0pt plus 1fil}
+\newpage
+
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\pagebreak
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+
+\chapter{序論}
+\section{概要}
+
+単調関数の最適化問題は H.Tuy \cite{tuy} などにより研究されている．
+
+\section{記号の定義}
+
+\begin{table}[htb]
+\begin{tabular}{ll}
+表記 & 意味 \\ \hline
+$ \mathbb{R} $ & 実数全体の集合 \\
+$ \mathbb{R}^n $ & $ n $ 次元実数ベクトル全体の集合 \\
+$ \mathbb{R}^n_{+} $ & すべての要素が非負である $ n $ 次元実数ベクトル全体の集合 \\
+$ x_i \; (x \in \mathbb{R}^n) $ & ベクトル $ x $ の $ i $ 列目の要素 \\
+$ x < y \; (x, y \in \mathbb{R}^n) $ & $ x_i < y_i \; (i = 1, ..., n) $ \\
+$ x \leq y \; (x, y \in \mathbb{R}^n) $ & $ x_i \leq y_i \; (i = 1, ..., n) $
+\end{tabular}
+\end{table}
+
+
+\section{構成}
+
+\chapter{単体上の単調関数最適化問題}
+
+単体上で単調関数の最適化を行うために，単調関数と単体を定義し，それらの性質について論ずる．
+
+\section{単調関数}
+
+単調関数とは，単調増加関数または単調減少関数のことであり，入力の増加に対して関数値も常に増加または減少する関数である．\\
+$ I \subseteq \mathbb{R}^n $ の関数 $ f : I \to \mathbb{R} $ は以下が成り立つ場合に単調増加関数であるという．
+$$ \forall x, x' \in I, x < x' \Rightarrow f(x) \leq f(x') $$
+さらに，それぞれについて関数値の比較の不等号の向きが逆になったものを単調減少関数という．すなわち，関数 $ f : I \to \mathbb{R} $ は以下が成り立つ場合，単調減少関数であるという．
+$$ \forall x, x' \in I, x < x' \Rightarrow f(x) \geq f(x') $$
+ここで $ I $ は $ n $ 次元実数空間全体や区間，離散的な空間が考えられる．\par
+単調増加関数 $ f $ について，$ -f $ を考えたとき，定義より $ -f $ は単調減少関数であることがわかる．もちろん逆も成り立ち，関数値を $ -1 $ 倍する操作によって単調増加と単調減少が切り替わり，単調性は失われないことがわかる．さらに，最適化問題において，ある関数 $ f $ の最大化は $ -f $ の最小化と同じであるため，関数値を $ -1 $ 倍することで最大化問題を最小化問題に変換することができる．ここからは単調増加関数の最小化問題についてしか論じないが，この通り最大化問題は最小化問題に変換することができ，単調性は保存されることから，一般性は失わない．
+
+\section{単体}
+
+以下を単位単体という．
+$$ \Delta_n \triangleq \Set{ x \in \mathbb{R}^n_{+} | \sum_{i=1}^{n} x_i = 1 } $$
+$ n $ について具体的に考えてみると，$ n=2 $ のとき線分，$ n=3 $ のとき平面上の正三角形，$ n=4 $ のとき三角錐となることがわかる．このように $n$ に対して一次元減った図形になることから，先ほど定義した $n$ 次元の単位単体 $ \Delta_n $ は $ n-1 $ 単体と呼ばれる．
+
+\section{単体上の単調関数}
+
+単調増加関数 $ f : \mathbb{R}^n_{+} \to \mathbb{R} $ の単位単体上における性質について考える．まず，単体の定義から以下が成り立つ．
+
+\begin{theorem}
+単体上の任意の点 $ x, y \in \Delta_n $ について $ x < y $ が成り立つことはない．
+\end{theorem}
+
+\begin{proof}
+背理法で示す．$ \exists x, y \in \Delta_n; x < y $ を仮定する．\\
+$ x \in \Delta_n $ より，$ \sum_{i=1}^n x_i = 1 $ が成り立つ．\\
+さらに，$ x < y $ であるから，
+$$ x_i < y_i \; (i = 1, ..., n) $$
+$$ \Rightarrow 1 = \sum_{i=1}^n x_i < \sum_{i=1}^n y_i $$
+これは $ y \in \Delta_n $ に矛盾する．\\
+よって，$ x < y $ が成り立つような単体上の点 $ x, y $ は存在しないことが証明された．
+\end{proof}
+
+つまり，単調増加関数の唯一の性質である $ x < y \Rightarrow f(x) < f(y) $ を利用できる点が単体上には存在せず，単体上だけを見ると特に性質のない任意の関数であるように見える．以上のことから，単体上における単調関数の最適化は一般的な大域的最適化問題を解くことと同程度に困難であると予想される．\par
+しかし，実行可能領域以外の領域の情報を利用し，単体上における下界を得ることができる．\\
+
+\begin{theorem}
+以下に示す $ x_{LB} \in \mathbb{R}^n_{+} $ は単体の任意の部分領域 $ A \subseteq \Delta_n $ における単調増加関数 $ f :  \mathbb{R}^n_{+} \to \mathbb{R} $ の関数値の下界 $ f(x_{LB}) $ を与える．
+$$ x_{LB} = \Set{ x \in \mathbb{R}^n_{+} | x_i = \min_{y \in A } y_i, \; i = 1, ..., n } $$
+\end{theorem}
+
+\begin{proof}
+$ x_{LB} $ の生成方法より，以下が成り立つ．
+$$ \forall x \in A, x_{LB} \leq x $$
+また，$ f $ は単調増加関数であったから，$ \forall x, y \in \mathbb{R}^n_{+}, x < y \Rightarrow f(x) < f(y) $ が成り立ち，
+$$ \forall x \in A, f(x_{LB}) \leq f(x) $$
+よって，$ f(x_{LB}) $ は単体の任意の部分領域 $ A $ における単調増加関数 $ f $ の下界となる．\qedhere
+\end{proof}
+
+\chapter{関連研究}
+\section{グリッド化した単体上での最適化}
+\section{単調関数の最適化}
+
+
+\chapter{提案手法}
+\section{単体の分割}
+\section{アルゴリズム}
+
+\chapter{数値実験}
+\section{条件}
+\section{実験結果}
+
+\chapter{結論}
+
+\chapter*{謝辞}
+\addcontentsline{toc}{chapter}{\numberline{}謝辞}
+
+ありがとうございました．
+
+\newpage
+
+\addcontentsline{toc}{chapter}{\numberline{}参考文献}
+\renewcommand{\bibname}{参考文献}
+
+\begin{thebibliography}{1}
+
+\bibitem{tuy}
+H. Tuy,
+\newblock Monotonic optimization: Problems and solution approaches,
+\newblock SIAM Journal on Optimization 11.2 (2000), pp. 464-494.
+
+\end{thebibliography}
+
+\end{document}
