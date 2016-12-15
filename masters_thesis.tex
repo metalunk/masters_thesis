@@ -6,10 +6,14 @@
 \usepackage{amssymb}
 \usepackage{braket}
 \usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 \newtheorem{definition}{定義}
 \newtheorem{theorem}{定理}
 \renewcommand{\proofname}{証明}
+\newcommand{\Continue}{\State \textbf{continue} }
+\newcommand{\Break}{\State \textbf{break} }
 
 \setcounter{tocdepth}{3}
 \setcounter{page}{-1}
@@ -48,7 +52,7 @@
 % TODO: 応用例，過去の研究について述べる
 凸関数最適化問題と比較して非凸関数の最適化は一般的に困難であると言われている．その中でも，非凸関数の一種である単調関数（Monotonic function）の最適化を扱う．単調関数とは，入力の増加に対して関数値も常に増加または減少する関数のことである．そのような単調関数について，実行可能領域を単体（Simplex）とした場合の最適化を考える．\par
 本稿では，大域的最適化の手法としてよく利用されている分枝限定法を利用する．分枝限定法は実行可能領域の分割を繰り返し，たくさんの小さな問題を解く手法である．実行可能領域における関数値の下界と暫定解と比較することで，その領域に最適解が存在しうるかどうかを判断し，最適解が存在し得ない場合はその領域を削除して効率的に最適化を行う．したがって分枝限定法において，良い下界を与えること，効果的に実行可能領域を分割することは重要である．\par
-単体の新たな分割方法の提案を行い，その分割手法が生成する子領域の数の上限を示す．さらに，提案した分割手法を使った分枝限定法の実験を行い，提案手法を評価する．
+単体の新たな分割方法の提案を行い，その分割手法が生成する子領域の数の上限を示す．さらに，提案した分割手法を使った分枝限定法の実験を行い，提案手法を評価する．\par
 
 \par
 \vspace{0pt plus 1fil}
@@ -89,13 +93,16 @@ $ x \leq y \; (x, y \in \mathbb{R}^n) $ & $ x_i \leq y_i \; (i = 1, ..., n) $
 
 \section{構成}
 
+% TODO
+構成はこう\par
+
 \chapter{単体上の単調関数最適化問題}
 
-本研究で扱う問題は以下のような単調関数 $ f $ の最小化問題である．
+本研究で扱う問題は以下のような単調関数 $ f $ の最小化問題である．\par
 
 $$
 \left| \;
-\begin{aligned} \label{math:primal_problem}
+\begin{aligned} \label{primal_problem}
 & 最小化 && f(x) &&&&& \\
 & 条件 && \sum_{i=1}^n x_i = 1 \notag \\
 & && x_i \geq 0, i = 1, ..., n \notag
@@ -103,7 +110,7 @@ $$
 \right.
 $$
 
-制約条件に，$ x $ の各要素の和が $ 1 $ であることと非負であることがある．このような条件を満たす $ x $ の集合は単体と呼ばれており，様々な研究がなされている．この問題は単調関数の単体上における最適化問題であり，まずは単調関数と単体を定義し，それらの性質について論ずる．
+制約条件に，$ x $ の各要素の和が $ 1 $ であることと非負であることがある．このような条件を満たす $ x $ の集合は単体と呼ばれており，様々な研究がなされている．この問題は単調関数の単体上における最適化問題であり，まずは単調関数と単体を定義し，それらの性質について論ずる．\par
 
 \section{単調関数}
 
@@ -134,7 +141,7 @@ $ f $ は単調増加関数であるから，任意の $ x, x' \in I $ につい
 これは $ -f $ が単調減少関数であることを示し，$ f $ が単調増加関数であることと，$ -f $ が単調減少関数であることが同値であることが証明された．
 \end{proof}
 
-定理 \ref{keeping_monotonicity} より，関数値を $ -1 $ 倍する操作によって単調増加と単調減少が切り替わり，単調性は失われないことがわかる．さらに，最適化問題において，ある関数 $ f $ の最大化は $ -f $ の最小化と同じであるため，関数値を $ -1 $ 倍することで最大化問題を最小化問題に変換することができる．ここからは単調増加関数の最小化問題についてしか論じないが，この通り最大化問題は最小化問題に変換することができ，単調性は保存されることから，一般性は失わない．
+定理 \ref{keeping_monotonicity} より，関数値を $ -1 $ 倍する操作によって単調増加と単調減少が切り替わり，単調性は失われないことがわかる．さらに，最適化問題において，ある関数 $ f $ の最大化は $ -f $ の最小化と同じであるため，関数値を $ -1 $ 倍することで最大化問題を最小化問題に変換することができる．ここからは単調増加関数の最小化問題についてしか論じないが，この通り最大化問題は最小化問題に変換することができ，単調性は保存されることから，一般性は失わない．\par
 
 \section{単体}
 
@@ -143,9 +150,9 @@ $ f $ は単調増加関数であるから，任意の $ x, x' \in I $ につい
 $$ \Delta_n \triangleq \Set{ x \in \mathbb{R}^n_{+} | \sum_{i=1}^{n} x_i = 1 } $$
 \end{definition}
 
-$ n $ について具体的に考えてみると，$ n=2 $ のとき線分，$ n=3 $ のとき平面上の正三角形，$ n=4 $ のとき三角錐となることがわかる．このように $n$ に対して一次元減った図形になることから，先ほど定義した $n$ 次元の単位単体 $ \Delta_n $ は $ n-1 $ 単体と呼ばれる．
+$ n $ について具体的に考えてみると，$ n=2 $ のとき線分，$ n=3 $ のとき平面上の正三角形，$ n=4 $ のとき三角錐となることがわかる．このように $n$ に対して一次元減った図形になることから，先ほど定義した $n$ 次元の単位単体 $ \Delta_n $ は $ n-1 $ 単体と呼ばれる．\par
 
-\section{単体上の単調関数}
+\section{単体上の単調関数の性質}
 
 単調増加関数 $ f : \mathbb{R}^n_{+} \to \mathbb{R} $ の単位単体上における性質について考える．まず，単体の定義から以下が成り立つ．\\
 
@@ -196,22 +203,24 @@ $$ \Set{ x \in \Delta_n | mx \in \mathbb{Z}^n } $$
 $$ G(c, n, m) \triangleq c \Delta_n \cap \Set{x \in \mathbb{R}^n | mx \in \mathbb{Z}^n} $$
 \end{definition}
 ここで，$ c = 1 $ としたとき，$ G(1, n, m) $ は $ n $ 次元の単位単体の各辺を $ m $ 等分してグリッド化したものと同じであることがわかる．\par
-以下は $ n = 3, m = 5 $ のときのグリッド化された単体の図である．\par
+以下は $ n = 3, m = 5 $ のときのグリッド化された単体の図である．\\
 % TODO: 図を描く
 
-\begin{theorem} \label{theorem:n_grid}
+\begin{theorem} \label{n_grid}
 グリッド化された単位単体 $ G(1, n, m) $ が持つ点の数は二項係数を利用した以下で与えられることがわかっている．
 $$ | G(1, n, m) | = \binom{n + m - 1}{m} $$
 \end{theorem}
-これは $ m $ を固定した場合の $ n $ の多項式であり，最適化手法としてグリッド化した単体上を全探索しても $ n $ の多項式オーダーでアルゴリズムが完了することがわかる．しかし，もちろん $ n, m $ を大きくした場合の $ \binom{n + m - 1}{m} $ はとても大きい数であり，例えば $ n = 10, m = 100 $ の場合，生成される点の数はおよそ $ 8.5 \times 10^{12} $ であり，全探索は難しいと容易に想像できる．
+
+これは $ m $ を固定した場合の $ n $ の多項式であり，最適化手法としてグリッド化した単体上を全探索しても $ n $ の多項式オーダーでアルゴリズムが完了することがわかる．しかし，もちろん $ n, m $ を大きくした場合の $ \binom{n + m - 1}{m} $ はとても大きい数であり，例えば $ n = 10, m = 100 $ の場合，生成される点の数はおよそ $ 8.5 \times 10^{12} $ であり，全探索は難しいと容易に想像できる．\par
 
 \section{単体の分割} \label{partition}
 
+% TODO: 絵を描く
 分枝限定法の分枝操作では実行可能領域をいくつかの部分領域に分割するが，本問題の実行可能領域は単体であるから，単体を分割する手法を考える．さらに，分枝操作は繰り返し行われるため，分割された部分領域も同様にすべて単体となっている必要がある．\par
 外崎ら \cite{tonosaki} による単体の分割手法は，グリッド化された単体を一次元少ない単体と，一列少ない単体の二つに分割する方法である．この手法を具体的に説明する．\par
 $ mb \in \mathbb{Z}^n $ を満たすような非負ベクトル $ b \in \mathbb{R}^n_{+} $ を利用して $ c $ を次のように与える．
 $$ c \equiv 1 - \sum_{j=1}^{n} b_j > 0 $$
-このとき次元のインデックスの部分集合 $ K = \{j_1, ..., j_k\} \subset \{1, ..., n\} $ を選択すると，単体上の最小化問題である元の問題 \ref{math:primal_problem} の部分問題を以下のように定義することができる．
+このとき次元のインデックスの部分集合 $ K = \{j_1, ..., j_k\} \subset \{1, ..., n\} $ を選択すると，単体上の最小化問題である元の問題 \ref{primal_problem} の部分問題を以下のように定義することができる．\par
 
 $$
 P(K, b) \;
@@ -225,7 +234,7 @@ P(K, b) \;
 \right.
 $$
 
-$ K $ に選択されなかった次元は $ b $ の値に固定され，$ K $ に選択された次元の変数のみを変数とするような問題となる．この問題は以下の問題と等価である．
+$ K $ に選択されなかった次元は $ b $ の値に固定され，$ K $ に選択された次元の変数のみを変数とするような問題となる．この問題は以下の問題と等価である．\par
 
 $$
 \left| \;
@@ -238,9 +247,9 @@ $$
 \right.
 $$
 
-この問題は各辺の大きさが $ c $ である $ k $ 次元のグリッド化された単体上の問題である．さらに定義より，$ G(c, k, m) $ は各辺を $ mc $ 個に分割したグリッドの集合であり，定理 \ref{theorem:n_grid} より以下が成り立つ．
+この問題は各辺の大きさが $ c $ である $ k $ 次元のグリッド化された単体上の問題である．さらに定義より，$ G(c, k, m) $ は各辺を $ mc $ 個に分割したグリッドの集合であり，定理 \ref{n_grid} より以下が成り立つ．
 $$ |G(c, k, m)| = \binom{k + mc -1}{mc} $$
-次に，$ K $ から一つのインデックス $ j_k $ を選択し $ P(K, b) $ を二つの部分問題に分割する．
+次に，$ K $ から一つのインデックス $ j_k $ を選択し $ P(K, b) $ を二つの部分問題に分割する．\par
 
 $$
 P(K, b + e_{j_k} / m) \;
@@ -268,7 +277,7 @@ P(K \backslash \{ j_k \}, b) \;
 \right.
 $$
 
-これらはそれぞれ以下の2問題と同値である．
+これらはそれぞれ以下の2問題と同値である．\par
 
 $$
 \left| \;
@@ -302,7 +311,7 @@ $$ \binom{k + mc - 1}{mc} = \binom{k + mc - 2}{mc - 1} + \binom{k + mc - 2}{mc} 
 ゆえに，以下が成り立つ．
 $$ | G(c, k, m) | = | G(c - 1/m, k, m) | + | G(c, k - 1, m) | $$
 この分枝操作を繰り返すと，すべてのグリッド化された単体はただ一点のみを含む単体になり，その総数は $ \binom{k + mc - 1}{mc} $ となる．\par
-元の問題 \ref{math:primal_problem} から分枝操作を繰り返すことで，問題をノードに持つ二分木 $ T $ を考えることができ，その木の葉は一点のみを含む単体となる．この二分木のノード数について以下のことが言える．
+元の問題 \ref{primal_problem} から分枝操作を繰り返すことで，問題をノードに持つ二分木 $ T $ を考えることができ，その木の葉は一点のみを含む単体となる．この二分木のノード数について以下のことが言える．\\
 
 \begin{theorem}
 $ T $ の総ノード数は $ 2 \binom{n + m - 1}{m} - 1 $ である
@@ -312,20 +321,139 @@ $ T $ の総ノード数は $ 2 \binom{n + m - 1}{m} - 1 $ である
 次に $ T $ の根を親に持つような二つの部分木を $ T_1, T_2 $ とし，それらの葉の数を $ r_1, r_2 $ とすると，$ r = r_1 + r_2 $ が成り立つ．さらに，$ r_1, r_2 \leq r - 1 $ であるから仮定より，$ T_1, T_2 $ のノード数は $ 2r_1 - 1, 2r_2 - 1 $ である．\\
 よって，$ T $ のノード数は
 $$ (2r_1 - 1) + (2r_2 - 1) + 1 = 2(r_1 + r_2) - 1 = 2r - 1 $$
-
 \end{proof}
 
 \section{単調関数の最適化}
 
-Tuy による，単調関数の最適化．
+% TODO
+Tuy による，単調関数の最適化．\par
 
 \chapter{提案手法}
 
-単体上の単調関数を分枝限定法で最適化する．分枝限定法において，領域の分割方法，下界の良さはアルゴリズムの速度に対して大変重要であり，本研究では単調関数の下界に定理  \ref{lower_bound_of_monotonic_function} で得られるものを利用し，分割方法は \ref{partition} で説明したもの利用する．
+単体上の単調関数を分枝限定法で最適化する．分枝限定法において，領域の分割方法，下界の良さはアルゴリズムの速度に対して大変重要であり，本研究では単調関数の下界に定理  \ref{lower_bound_of_monotonic_function} で得られるものを利用し，分割方法は \ref{partition} 節で説明したもの利用する．\par
+
+\section{単体の保持}
+
+分枝限定法において，分割される元の領域を親ノードとし，分割によって生成される複数の部分領域を子ノードと考えると，分割は木構造となる．ここで，根ノードは元の問題の実行可能領域であり，アルゴリズムが進行するにつれてすべての葉ノードは分割され，木は大きくなる．\par
+\ref{partition} 節の手法は単体を二つの部分単体に分割するため，二分木の構造を持つ．根ノードを単位単体としてアルゴリズムを開始し，その時点での葉ノード全てについて分割を繰り返すため，葉ノードの数は指数的に増大する．ゆえに大きなサイズの問題を解く場合，コンピュータのメモリ上に全ての葉ノードオブジェクトを保持し続けることは困難となる．この問題を解決するために，すべての葉ノードを保持するのでなく，分割の情報を表現する二分木を保持し，葉ノードが表す部分単体はその都度二分木の情報から再生成する．\par
+
+\subsection{二分木の構成}
+
+二分木のそれぞれのノードは単体を表現し，単体を分割するときにその単体を分割した次元をノードに保存する．分割によって二つの部分単体が生成されるが，一列減った部分単体は左の子ノードに，一次元減った部分単体は右の子ノードに挿入する．以上のルールに従って二分木を構成することで，二分木に保持された情報から，ある葉ノードの単体の形状を復元することができる．\par
+% TODO: 絵を描く
+
+\subsection{単体の再生成}
+
+% TODO: 逆順でも正しく生成できるのか確認する
+二分木の情報から，葉ノードが表す単体の形状を再現する．調べたい葉ノードから根ノードまで，親ノードをたどる．その際，左右どちらの子ノードであるかの情報と分割された次元を取得し，その二つの情報から葉ノードの形状を一意に再現できる．疑似コードを Algorithm \ref{algo:regenerate_simplex_from_btree} に示した．\par
+
+\begin{algorithm}
+\caption{Regenerate the simplex from the binary tree}
+\label{algo:regenerate_simplex_from_btree}
+\begin{algorithmic}[1]
+\Function{RegenerateSimplex}{$ node $}
+\State $ simplex := \Call{GenerateUnitSimplex} $
+\While{$ parent := \Call{parent}{node} $}
+\State $ cutting\_dimension := binary\_tree[parent] $
+\If{$ node $ is left child node}
+\State $ simplex := \Call{CutOneRow}{simplex, cutting\_dimension} $
+\ElsIf{$ node $ is right child node}
+\State $ simplex := \Call{CutOneDimension}{simplex,  cutting\_dimension} $
+\EndIf
+\State $ node := parent $
+\EndWhile
+\State \Return $ simplex $
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\section{分割する次元の決定方法}
+
+% TODO
+単体を分割する際に，どの次元について分割するかは重要である．\ref{partition} 節の分割手法により，$ P(K, b) $ はある次元 $ i $ を選択し，$ P(K, b + e_{i} / m) $ と $ P(K \backslash \{i\}, b) $ に分割される．このとき，$ P(K \backslash \{i\}, b) $ の実行可能領域は $ G(c, k, m) $ から一列削られた部分単体 $ G(c, k - 1, m) $ である．\par
+疑似コードを Algorithm \ref{algo:cutting_dimension} に示した．\par
+
+\begin{algorithm}
+\caption{Decide cutting dimension of simplex}
+\label{algo:cutting_dimension}
+\begin{algorithmic}[1]
+\Function{DecideCuttingDimension}{simplex}
+\State Initialize $ worst\_value $
+\State Initialize $ dimension $
+\For{each $ vertex $ of $ simplex $}
+\State $ function\_value := \Call{ObjectiveFunctionValue}{vertex} $
+\If{$ function\_value \geq worst\_value $}
+\State $ worst\_value := function\_value $
+\State $ dimension := \Call{GetDimension}{vertex} $
+\EndIf
+\EndFor
+\State \Return $ vertex $
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\section{低次元の単体の処理}
+
+アルゴリズムが進行するにつれ，分割された単体の次元は小さくなる．そして，分割された単体の情報が保持される二分木を考えてみると，木の末端に近い部分では低次元の単体しか存在せず，木の末端に近いということはそれらの数がとても多いことが容易に想像できる．よって，低次元の単体を効率良く処理することはアルゴリズムの速度に対して重要である．\par
+外崎ら \cite{tonosaki} による研究では単体が1次元 (点) になるまで分割を行っていた．例えば2次元の単体 (線分) を分割するとき，その単体は一次元減った単体 (点) と一点が取り除かれた単体 (線分) に分割される．下界によって刈られる場合を除き，この処理を単体の分割数回 ($ m $ 回) 繰り返すことによってやっと全ての単体が点となりアルゴリズムが終了する．分割を繰り返すことでアルゴリズムのオーバーヘッドはかさむため，低次元の単体を単純なアルゴリズムで探索し，速度を向上したい．低次元の単体一つ一つにおける実行時間の改善は小さいものであるが，本手法で生成される低次元の単体の数はとても多いため，アルゴリズム全体として速度の大幅な改善が期待される．\par
+分割が進み，単体の次元が2次元になった場合は単純に全てのグリッドの関数値を評価する．この処理は，部分単体が $ m $ 分割されている場合は $ O(m) $ の処理となる．疑似コードを Algorithm \ref{algo:line_search} に示した．\par
+
+\begin{algorithm}
+\caption{Line search}
+\label{algo:line_search}
+\begin{algorithmic}[1]
+\Function{LineSearch}{$ line $}
+\For{each $ point $ of $ line $}
+\State $ function\_value := \Call{ObjectiveFunctionValue}{point} $
+\If{$ function\_value < current\_optima $}
+\State $current\_optima := function\_value $
+\EndIf
+\EndFor
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
 
 \section{アルゴリズム}
 
+疑似コードは Algorithm \ref{algo:main} に示した通りとなる．\par
 
+\begin{algorithm}
+\caption{Optimize monotonic function on simplex}
+\label{algo:main}
+\begin{algorithmic}[1]
+\State Initialize $ binary\_tree $
+\State Initialize $ current\_optima $
+\State $ i $ := 0
+\While{$ true $}
+\State $ nodes := i $ th row of $ binary\_tree $
+\If{$ nodes $ are empty}
+\Break
+\EndIf
+\For{each $ node $ of $ nodes $}
+\State $ simplex = \Call{RegenerateSimplex}{node} $
+\State $ lower\_bound := \Call{CalculateLowerBound}{simplex} $
+\If{$ current\_optima \leq lower\_bound $}
+\Continue
+\EndIf
+\If{$ simplex $ is a line}
+\State $ \Call{LineSearch}{simplex} $
+\Continue
+\EndIf
+\If{$ current\_optima \geq $ some vertices of $ simplex $}
+\State Replace $ current\_optima $
+\EndIf
+\State $ cutting\_dimension = \Call{DecideCuttingDimension}{simplex} $
+\State $ binary\_tree[node] := cutting\_dimension $
+\EndFor
+\EndWhile
+\State \Return $ current\_optima $
+\end{algorithmic}
+\end{algorithm}
+
+\section{並列化}
+
+% TODO
+このアルゴリズムは並列化できる．\par
 
 \chapter{数値実験}
 \section{条件}
@@ -336,7 +464,7 @@ Tuy による，単調関数の最適化．
 \chapter*{謝辞}
 \addcontentsline{toc}{chapter}{\numberline{}謝辞}
 
-ありがとうございました．
+ありがとうございました．\par
 
 \newpage
 
