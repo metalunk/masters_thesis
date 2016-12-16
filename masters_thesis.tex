@@ -67,7 +67,6 @@
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-
 \chapter{序論}
 \section{概要}
 
@@ -93,8 +92,7 @@ $ x \leq y \; (x, y \in \mathbb{R}^n) $ & $ x_i \leq y_i \; (i = 1, ..., n) $
 
 \section{構成}
 
-% TODO
-構成はこう\par
+第1章では本論文の概要の説明と記号の定義を行った．第2章では本論文で扱う問題の定義とその性質を論じる．第3章では提案手法に関連する研究の説明を行い，第4章で提案手法の説明を行う．第5章では数値実験の結果を紹介し，第6章で結論を述べる．
 
 \chapter{単体上の単調関数最適化問題}
 
@@ -143,7 +141,7 @@ $ f $ は単調増加関数であるから，任意の $ x, x' \in I $ につい
 
 定理 \ref{keeping_monotonicity} より，関数値を $ -1 $ 倍する操作によって単調増加と単調減少が切り替わり，単調性は失われないことがわかる．さらに，最適化問題において，ある関数 $ f $ の最大化は $ -f $ の最小化と同じであるため，関数値を $ -1 $ 倍することで最大化問題を最小化問題に変換することができる．ここからは単調増加関数の最小化問題についてしか論じないが，この通り最大化問題は最小化問題に変換することができ，単調性は保存されることから，一般性は失わない．\par
 
-\section{単体}
+\section{単位単体}
 
 \begin{definition}
 以下を単位単体という．
@@ -175,8 +173,8 @@ $ x < y $ であるから，
 しかし，実行可能領域以外の領域の情報を利用し，単体上における下界を得ることができる．\\
 
 \begin{theorem}\label{lower_bound_of_monotonic_function}
-以下に示す $ x_{LB} \in \mathbb{R}^n_{+} $ は単体の任意の部分領域 $ A \subseteq \Delta_n $ における単調増加関数 $ f :  \mathbb{R}^n_{+} \to \mathbb{R} $ の関数値の下界 $ f(x_{LB}) $ を与える．
-$$ x_{LB} = \Set{ x \in \mathbb{R}^n_{+} | x_i = \min_{y \in A } y_i, \; i = 1, ..., n } $$
+以下のような要素を持つ $ x_{LB} \in \mathbb{R}^n_{+} $ は単体の任意の部分領域 $ A \subseteq \Delta_n $ における単調増加関数 $ f :  \mathbb{R}^n_{+} \to \mathbb{R} $ の関数値の下界 $ f(x_{LB}) $ を与える．
+$$ (x_{LB})_i = \min_{y \in A } y_i \; , \; i = 1, ..., n $$
 \end{theorem}
 
 \begin{proof}
@@ -203,8 +201,8 @@ $$ \Set{ x \in \Delta_n | mx \in \mathbb{Z}^n } $$
 $$ G(c, n, m) \triangleq c \Delta_n \cap \Set{x \in \mathbb{R}^n | mx \in \mathbb{Z}^n} $$
 \end{definition}
 ここで，$ c = 1 $ としたとき，$ G(1, n, m) $ は $ n $ 次元の単位単体の各辺を $ m $ 等分してグリッド化したものと同じであることがわかる．\par
-以下は $ n = 3, m = 5 $ のときのグリッド化された単体の図である．\\
-% TODO: 図を描く
+% TODO: $ n = 3, m = 5 $ のときのグリッド化された単体の図を描く
+TODO: $ n = 3, m = 5 $ のときのグリッド化された単体の図を描く\par
 
 \begin{theorem} \label{n_grid}
 グリッド化された単位単体 $ G(1, n, m) $ が持つ点の数は二項係数を利用した以下で与えられることがわかっている．
@@ -215,7 +213,8 @@ $$ | G(1, n, m) | = \binom{n + m - 1}{m} $$
 
 \section{単体の分割} \label{partition}
 
-% TODO: 絵を描く
+% TODO: わかりやすい図を描く
+TODO: わかりやすい図を描く\par
 分枝限定法の分枝操作では実行可能領域をいくつかの部分領域に分割するが，本問題の実行可能領域は単体であるから，単体を分割する手法を考える．さらに，分枝操作は繰り返し行われるため，分割された部分領域も同様にすべて単体となっている必要がある．\par
 外崎ら \cite{tonosaki} による単体の分割手法は，グリッド化された単体を一次元少ない単体と，一列少ない単体の二つに分割する方法である．この手法を具体的に説明する．\par
 $ mb \in \mathbb{Z}^n $ を満たすような非負ベクトル $ b \in \mathbb{R}^n_{+} $ を利用して $ c $ を次のように与える．
@@ -325,12 +324,44 @@ $$ (2r_1 - 1) + (2r_2 - 1) + 1 = 2(r_1 + r_2) - 1 = 2r - 1 $$
 
 \section{単調関数の最適化}
 
-% TODO
+% TODO: 書く
+TODO: 書く\par
 Tuy による，単調関数の最適化．\par
 
 \chapter{提案手法}
 
 単体上の単調関数を分枝限定法で最適化する．分枝限定法において，領域の分割方法，下界の良さはアルゴリズムの速度に対して大変重要であり，本研究では単調関数の下界に定理  \ref{lower_bound_of_monotonic_function} で得られるものを利用し，分割方法は \ref{partition} 節で説明したもの利用する．\par
+
+\section{分割する次元の選択}
+
+% TODO: わかりやすくなる絵を描く
+TODO: わかりやすくなる絵を描く\par
+分枝限定法において，分割された部分問題が良い関数値を持つことは，その部分領域が良い下界を持つことにつながり，その下界によってその領域を削除しやすくなる．さらに，良い暫定解を得ることにもつながるため，部分問題が良い関数値を持つことはアルゴリズムの早い収束に対して重要である．本節では，分割された部分領域が良い関数値を持つようにするための，分割する次元の決定方法について論じる．\par
+\ref{partition} 節の $ P(K, b) $ では，元の変数 $ x $ の代わりに $ y \in G(c, k, m) $ となるような変数 $ y $ が取り直されている．$ G(c, k, m) $ は次元のインデックス $ j_k $ を選択することで二つの部分単体 $ G(c, k-1, m), \; G(c-1/m, k, m) $ に分割される．選択された $ j_k $ 次元の値について詳しく見てみると，$ G(c, k - 1, m) $ では $ j_k $ 次元の変数値 $x_{j_k} $ は $ b_{j_k} $ に固定されており，これに対応する $ y \in G(c, k, m) $ における変数値 $ y_k $ は最小値 $ 0 $ となる．\par
+本問題で扱っている関数は単調増加関数であるから，ある次元 $ k $ に着目したとき，$ y_k $ が大きくなれば関数値は単調に増加し，逆に $ y_k $ が小さくなれば関数値は単調に減少する．よって，関数値に対して大きなインパクトを与えている次元 $ k $ を探し出し，$ k $ 次元について単体を分割すると，$ k $ 次元の値が最小値に固定された部分問題 $ P(K \backslash \{ k \}, b) $ の関数値は小さくなると予想できる．\par
+次に，大きなインパクトを与えている次元 $ k $ の探し方を考える．$ G(c, k, m) $ の頂点の集合を考えると，それらは $ c $ 倍した $ k $ 次の単位行列 $ I $ の列を取り出したものとなっている．つまり，頂点の要素は以下のようになっている．
+$$ (c, 0, 0, ..., 0), (0, c, 0, ..., 0), (0, 0, c, ..., 0), ..., (0, 0, 0, ..., c) $$
+ある次元 $ i $ に着目すると，$ i $ 番目の頂点の $ i $ 番目の要素は $ c $ で，それ以外の頂点の $ i $ 番目の要素は $ 0 $ である．ここで，全ての頂点について関数値を調べ，最も悪い関数値を持った頂点を $ j $ 番目の頂点であるとする．ここで，関数の単調性を考えてみると，頂点の $ j $ 番目の要素のインパクトが大きいために関数値が悪くなっているのではないかと予想できる．そこで，次元 $ j $ について単体を分割し，$ j $ 次元の変数値を最小値に固定した部分領域を切り出すことで，部分問題の関数値を小さくしたい．\par
+疑似コードを Algorithm \ref{algo:cutting_dimension} に示した．\par
+
+\begin{algorithm}
+\caption{Decide cutting dimension of simplex}
+\label{algo:cutting_dimension}
+\begin{algorithmic}[1]
+\Function{DecideCuttingDimension}{simplex}
+\State Initialize $ worst\_value $
+\State Initialize $ dimension $
+\For{each $ vertex $ of $ simplex $}
+\State $ function\_value := \Call{ObjectiveFunctionValue}{vertex} $
+\If{$ function\_value \geq worst\_value $}
+\State $ worst\_value := function\_value $
+\State $ dimension := \Call{GetDimension}{vertex} $
+\EndIf
+\EndFor
+\State \Return $ vertex $
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
 
 \section{単体の保持}
 
@@ -340,7 +371,8 @@ Tuy による，単調関数の最適化．\par
 \subsection{二分木の構成}
 
 二分木のそれぞれのノードは単体を表現し，単体を分割するときにその単体を分割した次元をノードに保存する．分割によって二つの部分単体が生成されるが，一列減った部分単体は左の子ノードに，一次元減った部分単体は右の子ノードに挿入する．以上のルールに従って二分木を構成することで，二分木に保持された情報から，ある葉ノードの単体の形状を復元することができる．\par
-% TODO: 絵を描く
+% TODO: 図を描く
+TODO: 図を描く\par
 
 \subsection{単体の再生成}
 
@@ -363,31 +395,6 @@ Tuy による，単調関数の最適化．\par
 \State $ node := parent $
 \EndWhile
 \State \Return $ simplex $
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
-
-\section{分割する次元の決定方法}
-
-% TODO
-単体を分割する際に，どの次元について分割するかは重要である．\ref{partition} 節の分割手法により，$ P(K, b) $ はある次元 $ i $ を選択し，$ P(K, b + e_{i} / m) $ と $ P(K \backslash \{i\}, b) $ に分割される．このとき，$ P(K \backslash \{i\}, b) $ の実行可能領域は $ G(c, k, m) $ から一列削られた部分単体 $ G(c, k - 1, m) $ である．\par
-疑似コードを Algorithm \ref{algo:cutting_dimension} に示した．\par
-
-\begin{algorithm}
-\caption{Decide cutting dimension of simplex}
-\label{algo:cutting_dimension}
-\begin{algorithmic}[1]
-\Function{DecideCuttingDimension}{simplex}
-\State Initialize $ worst\_value $
-\State Initialize $ dimension $
-\For{each $ vertex $ of $ simplex $}
-\State $ function\_value := \Call{ObjectiveFunctionValue}{vertex} $
-\If{$ function\_value \geq worst\_value $}
-\State $ worst\_value := function\_value $
-\State $ dimension := \Call{GetDimension}{vertex} $
-\EndIf
-\EndFor
-\State \Return $ vertex $
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
@@ -452,19 +459,27 @@ Tuy による，単調関数の最適化．\par
 
 \section{並列化}
 
-% TODO
-このアルゴリズムは並列化できる．\par
+本アルゴリズムの並列化について述べる．分割した実行可能領域を保持する二分木における，同一列中のノードに相互に依存性はないため，列ごとに処理が完了していることを保証すればアルゴリズムを並列化できる．Algorithm \ref{algo:cutting_dimension} によってノードを分割する次元を計算したり，Algorithm \ref{algo:line_search} によって線形探索をしている間に，他のノードの処理をすることができるためアルゴリズム全体に対して速度の向上が図れるかもしれない．\par
+ただし，$ G(1, n, m) $ を実行可能領域とする問題に対して，Algorithm \ref{algo:cutting_dimension} のオーダーは高々 $ O(n) $ で，Algorithm \ref{algo:line_search} は高々 $ O(m) $ であるため，それほど重い処理ではない．よって問題の大きさによっては，大きな速度の改善が見られない，もしくは改悪することも考えうる．\par
+具体的には，Algorithm \ref{algo:main} における 10 - 23 行目を並列化できる．
 
 \chapter{数値実験}
+
+% TODO: 書く
+TODO: 書く
 \section{条件}
 \section{実験結果}
 
 \chapter{結論}
 
+% TODO: 書く
+TODO: 書く
+
 \chapter*{謝辞}
 \addcontentsline{toc}{chapter}{\numberline{}謝辞}
 
-ありがとうございました．\par
+% TODO: 書く
+TODO: 書く
 
 \newpage
 
