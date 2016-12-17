@@ -1,0 +1,215 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7829,        207]
+NotebookOptionsPosition[      7384,        186]
+NotebookOutlinePosition[      7742,        202]
+CellTagsIndexPosition[      7699,        199]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Graphics3D", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0", ",", "0", ",", "1", ",", "0.6"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Simplex", "[", "\[IndentingNewLine]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.7", ",", "0.3", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0.3", ",", "0.7"}], "}"}]}], 
+       "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0", ",", "0", ",", "1", ",", "0.3"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Simplex", "[", "\[IndentingNewLine]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "\[IndentingNewLine]", 
+       "}"}], "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0", ",", "0", ",", "0", ",", "0.8"}], "]"}], ",", 
+     "\[IndentingNewLine]", "Thick", ",", "\[IndentingNewLine]", 
+     RowBox[{"Arrow", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0.3", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Arrow", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.7", ",", "0.3", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0.3", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Arrow", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0.3", ",", "0.7"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0.3", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"1", ",", "0", ",", "0"}], "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Ball", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0.3", ",", "0"}], "}"}], ",", "0.02"}], "]"}]}], 
+    "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.1"}], ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.1"}], ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "0.1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Axes", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.690958204998859*^9, 3.690958268020953*^9}, {
+   3.690959389298568*^9, 3.690959424306826*^9}, {3.6909595283374147`*^9, 
+   3.69095954402423*^9}, {3.690959600575152*^9, 3.690959616114792*^9}, {
+   3.6909597396281643`*^9, 3.6909597448460627`*^9}, {3.6909598844108963`*^9, 
+   3.69095992407848*^9}, {3.690960043137656*^9, 3.6909600511485243`*^9}, {
+   3.6909601128744707`*^9, 3.690960277547132*^9}, {3.690960314872196*^9, 
+   3.690960364127247*^9}, {3.690960397367619*^9, 3.690960457518052*^9}, {
+   3.690960496311171*^9, 3.690960622581244*^9}, {3.69096065741535*^9, 
+   3.69096066575067*^9}, {3.690960737678649*^9, 3.690960806617227*^9}, {
+   3.69096129933144*^9, 3.690961330958331*^9}, {3.690961375633062*^9, 
+   3.6909614355582542`*^9}, {3.690961479914851*^9, 3.690961480299711*^9}, {
+   3.6909616902316723`*^9, 3.690961768697094*^9}, {3.690961921520337*^9, 
+   3.6909619557173653`*^9}, {3.690962059044718*^9, 3.69096207156462*^9}, 
+   3.690962118159018*^9, {3.690962183534152*^9, 3.690962189766859*^9}}],
+
+Cell[BoxData[
+ Graphics3DBox[{
+   {RGBColor[0, 0, 1], Opacity[0.6], 
+    TagBox[Polygon3DBox[{{0.7, 0.3, 0}, {0, 1, 0}, {0, 0.3, 0.7}}],
+     "Simplex"]}, 
+   {RGBColor[0, 0, 1], Opacity[0.3], 
+    TagBox[Polygon3DBox[{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}],
+     "Simplex"]}, 
+   {RGBColor[0, 0, 0], Thickness[Large], Opacity[0.8], 
+    Arrow3DBox[{{0, 1, 0}, {0, 0.3, 0}}], 
+    Arrow3DBox[{{0.7, 0.3, 0}, {0, 0.3, 0}}], 
+    Arrow3DBox[{{0, 0.3, 0.7}, {0, 0.3, 0}}], 
+    {RGBColor[1, 0, 0], 
+     TagBox[SphereBox[{0, 0.3, 0}, 0.02],
+      "Ball"]}}},
+  Axes->True,
+  ImageSize->{610.8975783391334, 680.},
+  PlotRange->{{-0.1, 1}, {-0.1, 1}, {-0.1, 1}},
+  ViewPoint->{-2.9538095997574274`, 0.2835369045805674, -1.6262274355457604`},
+  
+  ViewVertical->{-0.44675591265281134`, 
+   0.8530554583641601, -0.26963964742757396`}]], "Output",
+ CellChangeTimes->{{3.690960770783853*^9, 3.690960807049326*^9}, {
+   3.6909613212207413`*^9, 3.690961331466907*^9}, 3.6909614374652576`*^9, 
+   3.690961481467822*^9, {3.6909617269248857`*^9, 3.690961769602396*^9}, {
+   3.690961922484136*^9, 3.6909619560787563`*^9}, {3.6909620642388563`*^9, 
+   3.690962072390505*^9}, 3.690962197551796*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"Graphics3D", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{"Simplex", "[", "\[IndentingNewLine]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "\[IndentingNewLine]", 
+       "}"}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "}"}], ",",
+     "\[IndentingNewLine]", 
+    RowBox[{"Axes", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.69096300488971*^9, 3.6909630846595993`*^9}, {
+  3.690963147314494*^9, 3.690963176862859*^9}, {3.690963219240686*^9, 
+  3.6909632404313097`*^9}, {3.690963312421186*^9, 3.690963359296319*^9}, {
+  3.690963405394518*^9, 3.690963411257205*^9}}],
+
+Cell[BoxData[
+ Graphics3DBox[
+  TagBox[Polygon3DBox[{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}],
+   "Simplex"],
+  Axes->True,
+  ImageSize->{356.7401046272932, 383.1453651175061},
+  ViewPoint->{2.9591999532618227`, 1.085813875435945, 1.2305055320989011`},
+  ViewVertical->{0.2797357358721852, 0.953623408358696, 
+   0.11113196257778903`}]], "Output",
+ CellChangeTimes->{{3.690963062521243*^9, 3.69096308701476*^9}, {
+   3.690963152544506*^9, 3.6909632407728033`*^9}, 3.6909633597315273`*^9, {
+   3.690963411808235*^9, 3.690963427299659*^9}}]
+}, Open  ]]
+},
+WindowSize->{1145, 751},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+26, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 4058, 94, 537, "Input"],
+Cell[4641, 118, 1176, 26, 695, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5854, 149, 980, 21, 243, "Input"],
+Cell[6837, 172, 531, 11, 398, "Output"]
+}, Open  ]]
+}
+]
+*)
+
