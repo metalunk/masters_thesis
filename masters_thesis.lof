@@ -1,8 +1,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces $ (0.7, 0.3, 0), (0, 1, 0), (0, 0.3, 0.7) $ を頂点に持つような単体の下界を与える点}}{5}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces $ (0.7, 0.3, 0), (0, 1, 0), (0, 0.3, 0.7) $ を頂点に持つような単体の下界を与える点}}{6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces $ c=1, n=3, m=3 $ としてグリッド化された単体 $ G(c, k, m) $}}{7}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces $ c=1, n=3, m=3 $ としてグリッド化された単体 $ G(c, k, m) $}}{8}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 2つに分割されたグリッド化された単体}}{11}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces $ n = 3, m = 3 $ の問題を解いたときの二分木 $ T $ の例}}{15}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

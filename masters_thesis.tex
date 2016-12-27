@@ -54,11 +54,7 @@
 \vspace{5mm}
 \end{center}
 
-% TODO: 論文の概要を書く
-凸関数最適化問題と比較して非凸関数の最適化は一般的に困難であると言われている．その中でも，非凸関数の一種である単調関数の最適化を扱う．単調関数とは，入力の増加に対して関数値も常に増加または減少する関数のことである．そのような単調関数について，実行可能領域を単体とした場合の最適化を考える．\par
-本稿では，大域的最適化の手法としてよく利用されている分枝限定法を利用する．分枝限定法は実行可能領域の分割を繰り返し，たくさんの小さな問題を解く手法である．実行可能領域における関数値の下界と暫定解と比較することで，その領域に最適解が存在しうるかどうかを判断し，最適解が存在し得ない場合はその領域を削除して効率的に最適化を行う．したがって分枝限定法において，良い下界を与えること，効果的に実行可能領域を分割することは重要である．\par
-分枝限定法における分割手法
-単体の新たな分割方法の提案を行い，その分割手法が生成する子領域の数の上限を示す．さらに，提案した分割手法を使った分枝限定法の実験を行い，提案手法を評価する．\par
+本論文では単体と呼ばれる領域の上での最適化を研究する．単体であることの条件はとても単純であり，単体上の最適化問題は，多様な実問題から考えられた経緯がある．目的関数は非凸関数としているが，非凸関数の最適化は凸関数の最適化に比べて困難であるとされている．本論文では非凸関数の中でも単調関数を扱う．単調関数とは変数の値を増やすと関数値も必ず増大もしくは減少するような関数である．このような単調関数を単体上で最適化する．最適化手法は分枝限定法を用い，単体をグリッド化した上で実行した．さらに，その手法が多項式時間アルゴリズムであることを示し，計算実験によりアルゴリズムの有用性を確認した．
 
 \par
 \vspace{0pt plus 1fil}
@@ -75,8 +71,8 @@
 
 \chapter{序論}
 
-% TODO: 研究背景，応用例，問題提起，過去の研究，提案手法について述べる
-単体上の最適化問題は de klerk ら \cite{deklerk2} によって研究されている
+本論文で扱う，単体上の最適化問題は単純な制約条件を持ち，多様な実問題からこのような問題が考えられた経緯がある．単体上の最適化手法は De Klerk \cite{deklerk_survey} により，目的関数が連続である場合や二次多項式である場合，または緩和について論じられている．本研究は非凸関数を目的関数とするが，一般に非凸関数の最適化は凸関数の最適化よりも困難であるとされている．特に非凸関数の中でも，変数の値を増やすと必ず関数値も増加もしくは減少するような関数である単調関数を目的関数として扱う．目的関数と制約条件がともに単調関数であるような問題の最適化手法は Tuy \cite{tuy} などにより研究されているが，本論文で扱う問題である単調関数の単体上での最適化はこれまであまり研究されていない．\par
+単体上の単調関数を分枝限定法で最適化する手法を提案する．Bomze, De Klerk \cite{bomze} により研究された単体のグリッド化を実行した上でその単体を分割し，単調関数の単体上での下界を利用したアルゴリズムを構築した．また，その手法の計算量が多項式であることがわかった．さらに，計算実験により本アルゴリズムの有用性を確認した．
 
 \section{記号の定義}
 
@@ -157,7 +153,7 @@ $$ \Delta_n \triangleq \Set{ x \in \mathbb{R}^n_{+} | \sum_{i=1}^{n} x_i = 1 } $
 
 $ n $ について具体的に考えてみると，$ n=2 $ の単体は線分，$ n=3 $ の単体は平面上の正三角形，$ n=4 $ の単体は三角錐となることがわかる．\par
 
-\section{単体上の単調関数の性質}
+\section{単体上の単調関数の性質} \label{sec:character_of_simplex_on_monotonic_function}
 
 単調増加関数 $ f : \mathbb{R}^n_{+} \to \mathbb{R} $ の単位単体上における性質について考える．まず，単体の定義から以下が成り立つ．
 
@@ -210,8 +206,7 @@ $ x_{LB} $ の算出をするためには単体の部分領域 $ A $ におけ�
 
 \section{単体のグリッド化}
 
-% TODO: どれを引用するべきか確認する
-de Klerk ら \cite{deklerk} による，単体をグリッド化して最適化する先行研究の説明をする．グリッド化とは，実行可能領域に格子を考え，格子の交差点だけを抽出し，実行可能領域の内部に等間隔に存在する点群を得ることである．そして，得られた点群の中で最も良い点を探す．グリッド化によって解候補の数は減少し，解きやすくなる．\par
+de Klerk ら \cite{deklerk} により行なわれている，グリッド化した単体上での最適化手法を説明をする．グリッド化とは，実行可能領域に格子を考え，格子の交差点だけを抽出し，実行可能領域の内部に等間隔に存在する点群を得ることである．そして，得られた点群の中で最も良い点を探す．グリッド化によって解候補の数は減少し，解きやすくなる．\par
 単体のグリッド化の定義を行う．$ m \in \mathbb{Z} $ を利用して，$ n $ 次元の単位単体の各辺を $ m $ 分割して得られるグリッド化された単位単体は以下のように表せる．
 $$ \Set{ x \in \Delta_n | mx \in \mathbb{Z}^n } $$
 これまでは単位単体のみを扱ってきたが，正の実数 $ c $ を利用して，各辺の長さが $ c $ であるような単体 $ c \Delta_n $ をグリッド化したもの $ G(c, n, m) $ を以下のように定義する．
@@ -233,7 +228,7 @@ $$ | G(1, n, m) | = \binom{n + m - 1}{m} $$
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=8cm]{graphs/grid_simplex.png}
+\includegraphics[width=9cm]{graphs/grid_simplex.png}
 \caption{$ c=1, n=3, m=3 $ としてグリッド化された単体 $ G(c, k, m) $}
 \label{fig:grid_simplex}
 \end{center}
@@ -344,6 +339,15 @@ $$
 $$
 
 $ P(K, b + e_{j_k} / m) $ は $ P(K, b) $ からグリッドが一列減った問題であり，$ P(K \backslash \{ j_k \}, b) $ は次元が1次元減った問題である．以上のようにグリッド化された単体を，一列減った単体と一次元減った単体に分割することができた．もともと単体には一列という概念は存在しないが，グリッド化をしたことによってこのような操作が可能になった．\par
+図 \ref{fig:divided_simplices} はグリッド化した単体を本手法で分割した図である．青い点の集合は一列減った単体 $ P(K, b + e_{j_k} / m) $ を表し，赤い点の集合が一次元減った単体 $ P(K \backslash \{ j_k \}, b) $ を表している．元の単体は $ n = 3 $ の単体であったが，赤い点の集合は $ n = 2 $ の単体，つまり線分となっており，一次元減っていることがわかる．また，青い点の集合を見てみると，こちらは次元に変化はなく，変わらず $ n = 3 $ の単体であるが，グリッドが一列削られていることがわかる．
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=9cm]{graphs/divided_simplices.png}
+\caption{2つに分割されたグリッド化された単体}
+\label{fig:divided_simplices}
+\end{center}
+\end{figure}
 
 \subsection{部分問題のグリッド数}
 
@@ -360,7 +364,7 @@ $$ | G(c, k, m) | = | G(c - 1/m, k, m) | + | G(c, k - 1, m) | $$
 
 分枝限定法において問題は繰り返し部分問題に分割されるが，問題をノードに持つ木構造を考えることができる．分割される前の問題を親ノードとして，分割された部分問題を子ノードとすると，アルゴリズムが進行するにつれて木は子ノードを増やして大きくなる．本章で説明した分割によって生成される木を $ T $ とすると，問題は2分割されるため $ T $ は2分木である．さらに，問題を完全に分割し切った場合，部分問題の実行可能領域はただ一点を持つ単体となるが，この部分問題は $ T $ の末端の葉ノードにあたる．そしてこの二分木 $ T $ のノード数について以下のことが言える．
 
-\begin{theorem}
+\begin{theorem} \label{thm:total_node}
 $ T $ の総ノード数は $ 2 \binom{n + m - 1}{m} - 1 $ である
 \end{theorem}
 \begin{proof}
@@ -370,19 +374,12 @@ $ T $ の総ノード数は $ 2 \binom{n + m - 1}{m} - 1 $ である
 $$ (2r_1 - 1) + (2r_2 - 1) + 1 = 2(r_1 + r_2) - 1 = 2r - 1 $$
 \end{proof}
 
-\section{単調関数の最適化}
-
-% TODO: Tuy による，単調関数の最適化について説明する
-TODO: Tuy による，単調関数の最適化について説明する．\par
-
 \chapter{提案手法}
 
 本章では，単体上の単調関数を分枝限定法で最適化する提案手法の説明をする．分枝限定法において，領域の分割方法，下界の良さはアルゴリズムの速度に対してとても重要であり，本研究では単調関数の下界に定理  \ref{thm:lower_bound_of_monotonic_function} で得られるものを利用し，分割方法は \ref{sec:partition} 節で説明したもの利用する．\par
 
 \section{分割する次元の選択}
 
-% TODO: わかりやすくなる絵を描く
-TODO: わかりやすくなる絵を描く\par
 分枝限定法において，分割された部分問題が良い関数値を持つことは，その部分領域が良い下界を持つことにつながり，その下界によってその領域を削除しやすくなる．さらに同時に，良い暫定解を得ることにもつながるため，部分問題が良い関数値を持つことはアルゴリズムの早い収束に対して重要である．本節では，部分領域が良い関数値を持つような \ref{sec:partition} 節における次元のインデックス $ j_k $ の選び方，つまり，問題を分割する次元の決定方法について論じる．\par
 \ref{sec:partition} 節の問題 $ P(K, b) $ では，元の変数 $ x $ の代わりに $ y \in G(c, k, m) $ となるような変数 $ y $ が取り直されている．$ G(c, k, m) $ は次元のインデックス $ j_k $ を選択することで二つの部分単体 $ G(c, k-1, m), \; G(c-1/m, k, m) $ に分割される．選択された $ j_k $ 次元の値について詳しく見てみると，$ G(c, k - 1, m) $ では $ j_k $ 次元の変数値 $ x_{j_k} $ は $ b_{j_k} $ に固定されており，これに対応する $ y \in G(c, k, m) $ における変数値 $ y_k $ は最小値 $ 0 $ となる．\par
 本問題で扱っている関数は単調増加関数であるから，ある次元 $ k $ に着目したとき，$ y_k $ が大きくなれば関数値は単調に増加し，逆に $ y_k $ が小さくなれば関数値は単調に減少する．よって，関数値に対して大きなインパクトを与えている次元 $ k $ を探し出し，次元 $ k $ について単体を分割すると，部分問題 $ P(K \backslash \{ k \}, b) $ の次元 $ k $ の変数値は最小値に固定され，関数値は小さくなると予想できる．\par
@@ -417,13 +414,20 @@ $$ (c, 0, 0, ..., 0), (0, c, 0, ..., 0), (0, 0, c, ..., 0), ..., (0, 0, 0, ..., 
 \subsection{二分木の構成}
 
 プログラム中における二分木の作り方を説明する．二分木のノードは部分問題を表現し，問題を分割した際に単体を分割した次元をノードに保存する．$ P(K, b) $ を分割すると二つの部分問題が生成されるが，グリッドが一列減った部分問題 $ P(K, b + e_{j_k} / m) $ は左の子ノードに，一次元減った部分問題 $ P(K \backslash \{ j_k \}, b) $ は右の子ノードに挿入する．以上のルールに従って二分木を構成することで，二分木に保持された情報から，ある葉ノードの部分問題における単体の形状を復元することができる．\par
-% TODO: 図を描く
-TODO: 図を描く\par
+$ n = 3, m = 3 $ の問題を解いた際の二分木 $ T $ の構造の例を図 \ref{fig:simplex_tree} に示した．アルゴリズムの開始状態は $ K = \{1, 2, 3\} \; , \; b = (0, 0, 0)^T $ である．緑色の丸に囲まれた数字は単体を分割した次元を表し，グリッドが一列減った問題は下側の子ノード，次元が減った問題は上側の子ノードとして書いた．ここで，実際にプログラムが保持するのは図における緑色の部分のみ，つまり単体を分割した次元と二分木の構図のみであり，問題や単体のオブジェクトは保持しない．どのようにこの二分木からノードが表す問題を生成するかを次で説明する．\par
 
-\subsection{二分木から問題を生成する方法}
+\begin{figure}
+\begin{center}
+\includegraphics[width=17cm]{graphs/simplex_tree.png}
+\caption{$ n = 3, m = 3 $ の問題を解いたときの二分木 $ T $ の例}
+\label{fig:simplex_tree}
+\end{center}
+\end{figure}
+
+\subsection{二分木から問題を生成する方法} \label{sec:generate_problem_from_btree}
 
 % TODO: 逆順でも正しく生成できるのか確認する
-二分木の情報から，葉ノードが表す部分問題の単体を生成する．調べたい葉ノードから根ノードまで，親ノードをたどる．その際，左右どちらの子ノードであるかの情報と分割された次元を取得し，その二つの情報から葉ノードが表す部分問題を一意に再現できる．ある葉ノードを入力とし，そのノードが表現する部分問題の実行可能領域単体を返す疑似コードを Algorithm \ref{algo:regenerate_simplex_from_btree} に示した．\par
+二分木の情報から，葉ノードが表す部分問題の単体を生成する．調べたい葉ノードから根ノードまで，親ノードをたどる．その際，左右どちらの子ノードであるかの情報と分割された次元を取得し，その二つの情報から葉ノードが表す部分問題を一意に再現できる．ある葉ノードを入力とし，そのノードが表現する部分問題の実行可能領域単体を返す疑似コードを Algorithm \ref{algo:regenerate_simplex_from_btree} に示した．この処理の計算量は，ノードが最も深い場所にある場合に最悪となるが，木の深さは高々 $ n + m $ であるから，$ O(n + m) $ である．\par
 
 \begin{algorithm}
 \caption{Regenerate the simplex from the binary tree}
@@ -511,7 +515,7 @@ TODO: 図を描く\par
 
 \section{計算量の解析}
 
-% TODO: 書く
+Algorithm \ref{algo:main} の計算量を考える．まずはサブモジュールとして使っている処理を解析する，10行目で二分木から単体を生成している処理は \ref{sec:generate_problem_from_btree} 節で説明した通り高々 $ O(n + m) $，11行目で下界を与える点を計算する処理は \ref{sec:character_of_simplex_on_monotonic_function} 節の通り $ O(n) $，16行目の線形探索は Algorithm \ref{algo:line_search} を利用して高々 $ O(m) $，最後に，22行目の分割する次元を決定する処理は Algorithm \ref{algo:cutting_dimension} により単体の頂点を調べ上げれば完了するため $ O(n) $ である．以上により，$ m $ を固定したときサブモジュールの計算量は高々 $ O(n) $ であることがわかった．さらに，定理 \ref{thm:total_node} により，分割の情報を保持する二分木 $ T $ の総ノード数は $ \binom{n + m - 1}{m} $ であることがわかっており，これは $ n $ に対する多項式である．多項式の多項式は多項式である性質から，Algorithm \ref{algo:main} 全体の計算量は $ n $ の多項式であることがわかった．\par
 
 \chapter{数値実験}
 
@@ -538,40 +542,40 @@ TODO: 書く
 
 \begin{thebibliography}{1}
 
+\bibitem{deklerk_survey}
+E De Klerk,
+\newblock The complexity of optimizing over a simplex, hypercube or sphere: a short survey,
+\newblock Central European Journal of Operations Research 16.2 (2008), pp. 111-125.
+
 \bibitem{tuy}
 H. Tuy,
 \newblock Monotonic optimization: Problems and solution approaches,
 \newblock SIAM Journal on Optimization 11.2 (2000), pp. 464-494.
 
-\bibitem{deklerk}
-E De Klerk,
-\newblock The complexity of optimizing over a simplex, hypercube or sphere: a short survey,
-\newblock Central European Journal of Operations Research 16.2 (2008), pp. 111-125.
-
-\bibitem{deklerk2}
-E De Klerk, D Den Hertog, and G. Elabwabi,
-\newblock On the complexity of optimization over the standard simplex,
-\newblock European journal of operational research 191.3 (2008), pp. 773-785.
-
-\bibitem{deklerk3}
+\bibitem{bomze}
 IM Bomze, and E De Klerk,
 \newblock Solving standard quadratic optimization problems via linear, semidefinite and copositive programming,
 \newblock Journal of Global Optimization 24.2 (2002), pp. 163-185.
 
-\bibitem{direct}
-DR Jones, CD Perttunen, and BE Stuckman,
-\newblock Lipschitzian optimization without the Lipschitz constant,
-\newblock Journal of Optimization Theory and Applications 79.1 (1993), pp. 157-181.
+\bibitem{deklerk}
+E De Klerk, D Den Hertog, and G. Elabwabi,
+\newblock On the complexity of optimization over the standard simplex,
+\newblock European journal of operational research 191.3 (2008), pp. 773-785.
 
-\bibitem{disimple}
-P Remigijus, and J Zilinskas,
-\newblock Simplicial Lipschitz Optimization Without Lipschitz Constant,
-\newblock Simplicial Global Optimization (2014), pp. 61-86.
+% \bibitem{direct}
+% DR Jones, CD Perttunen, and BE Stuckman,
+% \newblock Lipschitzian optimization without the Lipschitz constant,
+% \newblock Journal of Optimization Theory and Applications 79.1 (1993), pp. 157-181.
+
+% \bibitem{disimple}
+% P Remigijus, and J Zilinskas,
+% \newblock Simplicial Lipschitz Optimization Without Lipschitz Constant,
+% \newblock Simplicial Global Optimization (2014), pp. 61-86.
 
 \bibitem{tonosaki}
-外崎真造, 久野誉人,
+外崎真造,
 \newblock 非凸2次制約付き配合計画問題のロバスト最適化,
-\newblock 筑波大学システム情報工学研究科修士学位論文 (20010)
+\newblock 筑波大学システム情報工学研究科修士学位論文 (2010)
 \end{thebibliography}
 
 \end{document}
