@@ -1,29 +1,29 @@
 \contentsline {chapter}{\numberline {第1章}序論}{1}
 \contentsline {section}{\numberline {1.1}記号の定義}{1}
-\contentsline {section}{\numberline {1.2}構成}{1}
-\contentsline {chapter}{\numberline {第2章}単体上の単調関数最適化問題}{2}
-\contentsline {section}{\numberline {2.1}単調関数}{2}
-\contentsline {section}{\numberline {2.2}単位単体}{3}
-\contentsline {section}{\numberline {2.3}単体上の単調関数の性質}{3}
-\contentsline {chapter}{\numberline {第3章}関連研究}{6}
-\contentsline {section}{\numberline {3.1}分枝限定法}{6}
-\contentsline {section}{\numberline {3.2}単体のグリッド化}{6}
-\contentsline {section}{\numberline {3.3}単体の分割}{8}
-\contentsline {subsection}{\numberline {3.3.1}分割の手順}{8}
-\contentsline {subsection}{\numberline {3.3.2}部分問題のグリッド数}{10}
-\contentsline {subsection}{\numberline {3.3.3}分割数の性質}{11}
-\contentsline {chapter}{\numberline {第4章}提案手法}{12}
-\contentsline {section}{\numberline {4.1}分割する次元の選択}{12}
-\contentsline {section}{\numberline {4.2}単体の保持}{13}
-\contentsline {subsection}{\numberline {4.2.1}二分木の構成}{13}
-\contentsline {subsection}{\numberline {4.2.2}二分木から問題を生成する方法}{14}
-\contentsline {section}{\numberline {4.3}低次元の単体の処理}{15}
-\contentsline {section}{\numberline {4.4}アルゴリズム}{15}
-\contentsline {section}{\numberline {4.5}並列化}{17}
-\contentsline {section}{\numberline {4.6}計算量の解析}{17}
-\contentsline {chapter}{\numberline {第5章}数値実験}{18}
-\contentsline {section}{\numberline {5.1}条件}{18}
-\contentsline {section}{\numberline {5.2}実験結果}{18}
-\contentsline {chapter}{\numberline {第6章}結論}{19}
-\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }謝辞}{20}
-\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }参考文献}{21}
+\contentsline {section}{\numberline {1.2}構成}{2}
+\contentsline {chapter}{\numberline {第2章}単体上の単調関数最適化問題}{3}
+\contentsline {section}{\numberline {2.1}単調関数}{3}
+\contentsline {section}{\numberline {2.2}単体}{4}
+\contentsline {section}{\numberline {2.3}単体上の単調関数の性質}{4}
+\contentsline {chapter}{\numberline {第3章}関連研究}{7}
+\contentsline {section}{\numberline {3.1}分枝限定法}{7}
+\contentsline {section}{\numberline {3.2}単体のグリッド化}{7}
+\contentsline {section}{\numberline {3.3}グリッド化された単体の分割}{9}
+\contentsline {subsection}{\numberline {3.3.1}分割の手順}{9}
+\contentsline {subsection}{\numberline {3.3.2}部分問題のグリッド数}{11}
+\contentsline {subsection}{\numberline {3.3.3}分割数の性質}{12}
+\contentsline {chapter}{\numberline {第4章}提案する手法}{13}
+\contentsline {section}{\numberline {4.1}分割する次元の選択}{13}
+\contentsline {section}{\numberline {4.2}単体の保持}{14}
+\contentsline {subsection}{\numberline {4.2.1}二分木の構成}{14}
+\contentsline {subsection}{\numberline {4.2.2}二分木から問題を生成する方法}{15}
+\contentsline {section}{\numberline {4.3}低次元の単体の処理}{16}
+\contentsline {section}{\numberline {4.4}アルゴリズム}{16}
+\contentsline {section}{\numberline {4.5}並列化}{18}
+\contentsline {section}{\numberline {4.6}計算量の解析}{18}
+\contentsline {chapter}{\numberline {第5章}数値実験}{19}
+\contentsline {section}{\numberline {5.1}条件}{19}
+\contentsline {section}{\numberline {5.2}実験結果}{19}
+\contentsline {chapter}{\numberline {第6章}結論}{20}
+\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }謝辞}{21}
+\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }参考文献}{22}
