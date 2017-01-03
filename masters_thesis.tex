@@ -55,7 +55,7 @@
 \vspace{5mm}
 \end{center}
 
-本論文では単体上での最適化を研究する．実行可能領域が単体である条件はとても単純であるが，単体上の最適化問題は様々な実問題から考えられた経緯がある．目的関数の凸性は仮定しないが，非凸関数の最適化は凸関数の最適化に比べて困難であることが知られている．本論文で扱うのは，単調性を有した非凸関数である．単調性とは，変数の値を増やすと関数値もそれに伴って増大もしくは減少するような関数の性質である．このような単調関数を単体上で効率よく最適化することが本研究の目的である．提案する最適化手法は分枝限定法で，グリッド化した単体上で実行した．さらに，この方法が多項式時間近似スキームであることを示し，計算実験によりアルゴリズムの実用性を確認した．
+本論文では単体上での最適化を研究する．実行可能領域が単体である条件はとても単純であり多くの応用例を持つが，単体上の最適化問題は様々な実問題から考えられた経緯がある．目的関数の凸性は仮定しないが，非凸関数の最適化は凸関数の最適化に比べて困難であることが知られている．本論文で扱うのは，単調性を有した非凸関数である．単調性とは，変数の値を増やすと関数値もそれに伴って増大もしくは減少するような関数の性質である．このような単調関数を単体上で効率よく最適化することが本研究の目的である．単体上の単調関数最適化問題はこれまであまり研究されていないが，単体上の関数から単調関数への変換ができることを示すことで，本問題の困難さと，多くの問題の一般化になっていることを示した．単体をグリッド化して最適化する既存手法に対して，目的関数に単調性を仮定することで，単体上での下界が利用できることがわかった．その下界を利用し，単体の分割手法を定義した上で分枝限定法を実行した．さらに，この方法が多項式時間近似スキームであることを示し，実験によりアルゴリズムの有用性を確認した．
 
 \par
 \vspace{0pt plus 1fil}
@@ -72,8 +72,8 @@
 
 \chapter{序論}
 
-単体上の最適化問題は単純な制約条件を持つが，多様な実問題からこのような問題が考えられた経緯がある．単体上の最適化問題は広く研究されており，De Klerk \cite{deklerk_survey} により，目的関数が連続である場合や二次関数である場合の，問題の困難さや最適化手法について論じられている．本研究で目的関数の凸性は仮定していないが，非凸関数の最適化は凸関数の最適化よりも困難であることが知られている．本論文で扱う問題の目的関数は，単調性を有した非凸関数である．単調性とは，変数の値を増やすとそれに伴って関数値も増加もしくは減少するような関数の性質である．目的関数と制約条件がともに単調関数であるような問題の最適化手法は Tuy \cite{tuy} などにより研究されているが，本論文で扱う単調関数の単体上の最適化はこれまであまり研究されていない．\par
-提案する手法は，グリッド化した単体上の単調関数を分枝限定法で最適化するアルゴリズムである．Bomze, De Klerk \cite{bomze} による単体のグリッド化を実行した上で，グリッド化された単体を2つの単体に分割する手法を利用して分枝操作を行った．さらに，下界には単調関数の単体上の下界を利用し，限定操作を行った．また，この手法の計算量が問題の次元数 $ n $ の多項式であることを示した．さらに，計算実験によって本アルゴリズムの有用性を示した．
+単体上の最適化問題はとても単純な制約条件を持ち，多くの応用例を持つが，多様な実問題からこのような問題が考えられた経緯がある．単体上の最適化問題は広く研究されており，De Klerk \cite{deklerk_survey} により，目的関数が連続である場合や二次関数である場合の，問題の困難さや最適化手法について論じられている．本研究では目的関数に凸性を仮定していないが，非凸関数の最適化は凸関数の最適化よりも困難であることが知られている．本研究で扱う問題の目的関数は，単調性を有した非凸関数である．単調性とは，変数の値を増やすとそれに伴って関数値も増加もしくは減少するような関数の性質である．目的関数と制約条件がともに単調関数であるような問題の最適化手法は Tuy \cite{tuy} などにより研究されているが，本論文で扱う単調関数の単体上の最適化はこれまであまり研究されていない．本研究では，関数の下界値を利用することで単体上の関数から単調関数への変換ができることを示し，本問題の困難さと，多くの問題の一般化になっていることがわかった．\par
+提案する手法は，グリッド化した単体上の単調関数を分枝限定法で最適化するアルゴリズムである．Bomze, De Klerk \cite{bomze} は単体上の最適化問題に対して，単体をグリッド化することで多項式時間アルゴリズムを構築した．本研究では単体をグリッド化した上で，目的関数に単調性を仮定することで得た単体上の下界値を利用し，分枝限定法を実行した．分枝限定法における分枝規則には，単体を2つの単体に分割する手法を利用し，この手法が多項式時間近似スキームであることを示した．さらに，計算実験によって本アルゴリズムの有用性を示した．
 
 \section{記号の定義}
 
@@ -113,7 +113,7 @@ $$
 
 \section{単調関数}
 
-単調関数の定義を行う．単調関数とは，単調増加関数または単調減少関数のことであり，入力の増加に対して関数値もそれに伴って増加または減少する関数である．さらにそのような性質を単調性と呼ぶ．単調増加関数を以下のように定義する．
+単調関数の定義を行う．単調関数とは，単調増加関数または単調減少関数のことであり，入力の増加に対して関数値もそれに伴って増加または減少する関数である．さらに，そのような性質を単調性と呼ぶ．単調増加関数を以下のように定義する．
 
 \begin{definition}
 $ I \subseteq \mathbb{R}^n $ 上の関数 $ f : I \to \mathbb{R} $ は任意の $ x, x' \in I $ に対して以下が成り立つ場合に単調増加関数であるという．
@@ -127,7 +127,7 @@ $ I \subseteq \mathbb{R}^n $ 上の関数 $ f : I \to \mathbb{R} $ は任意の 
 $$ x \leq x' \Rightarrow f(x) \geq f(x') $$
 \end{definition}
 
-ここで $ I $ は $ n $ 次元実数空間全体や区間，離散的な空間が考えられる．また，ここで定義した単調増加関数は広義単調増加関数や単調非減少関数と呼ばれることがあるが，本論文では狭義単調増加関数を扱わないため，単に単調増加関数ということにする．単調減少関数についても同様である．
+ここで $ I $ は $ n $ 次元実数空間全体や区間，離散的な空間などが考えられる．また，ここで定義した単調増加関数は広義単調増加関数や単調非減少関数と呼ばれることがあるが，本論文では狭義単調増加関数を扱わないため，単に単調増加関数ということにする．単調減少関数についても同様である．
 
 \begin{proposition} \label{prop:keeping_monotonicity}
 $ f : I \to \mathbb{R} $ が単調増加関数であることと，$ -f $ が単調減少関数であることは同値である．
@@ -147,21 +147,25 @@ $ f $ は単調増加関数であるから，任意の $ x, x' \in I $ につい
 
 \section{単体}
 
+本節では単体の定義を行う．
+
 \begin{definition}
-成分の和が $ 1 $ であるようなベクトルの集合 $ \Delta_n $ を単位単体という．
+各成分の和が $ 1 $ である以下のようなベクトルの集合 $ \Delta_n $ を単位単体という．
 $$ \Delta_n \triangleq \Set{ x \in \mathbb{R}^n_{+} | \sum_{i=1}^{n} x_i = 1 } $$
 \end{definition}
 
+単体とは，成分の和が定数になっているベクトルの集合であり，単位単体を一般化した単体を以下のように定義する．
+
 \begin{definition}
-単位単体を $ c \in \mathbb{R}_+ $ 倍して一般化したものを単体という．
+非負実数 $ c \in \mathbb{R}_+ $ を用い，単位単体を $ c $ 倍したものを単体という．
 $$ c \Delta_n \triangleq \Set{ x \in \mathbb{R}^n_{+} | \sum_{i=1}^{n} x_i = c } $$
 \end{definition}
 
-$ n $ について具体的に考えてみると，$ n=2 $ の単体は線分，$ n=3 $ の単体は平面上の正三角形，$ n=4 $ の単体は正四面体となることがわかる．このように，単体は $ n $ に対して一次元少ない $ n - 1 $ 次元空間上に存在することがわかり，一般に $ n = k $ の単体は $ k - 1 $ 次元単体と呼ばれる．よって，線分は1次元単体，正三角形は2次元単体，正四面体は3次元単体と呼ぶこととする．\par
+$ n $ について具体的に考えてみると，$ n=2 $ の単体は線分，$ n=3 $ の単体は平面上の正三角形，$ n=4 $ の単体は正四面体となることがわかる．このように，単体は $ n $ に対して一次元少ない $ n - 1 $ 次元空間上に存在することがわかり，一般に $ n = k $ の単体は $ k - 1 $ 次元単体と呼ばれる．よって，1次元単体は線分，2次元単体は正三角形，3次元単体は正四面体である．\par
 
-\section{単体上の単調関数の性質} \label{sec:character_of_simplex_on_monotonic_function}
+\section{単体上の単調関数の性質}
 
-単調増加関数 $ f : \mathbb{R}^n_{+} \to \mathbb{R} $ の単体上における性質について考える．まず，単体の定義から以下が成り立つ．
+単体の定義から以下が言える．
 
 \begin{proposition} \label{prop:inequality_on_simplex}
 単体上の任意の異なる点 $ x, y \in c \Delta_n $ について $ x \leq y $ が成り立つことはない．
@@ -173,16 +177,133 @@ $$ x_i \leq y_i \;, i = 1, ..., n $$
 さらに，$ x , y $ は異なる点であったから $ x \neq y $ であり，狭義な不等号 $ x_i < y_i $ が成り立つような $ i $ が存在する．よって $ x, y $ の成分の和に以下のような狭義の不等号が成り立つ．
 $$ \sum_{i=1}^n x_i < \sum_{i=1}^n y_i $$
 これは $ x, y \in c \Delta_n $ つまり，$ \sum_{i=1}^n x_i = \sum_{i=1}^n y_i = c $ に矛盾する．\\
-よって，$ x \leq y $ が成り立つような単体上の異なる点 $ x, y $ は存在しないことが証明された．
+よって，$ x \leq y $ が成り立つような単体上の異なる点 $ x, y $ は存在しない．
 \end{proof}
 
 \end{proposition}
 
-命題 \ref{prop:inequality_on_simplex} から，単調増加関数の定義である $ x \leq y \Rightarrow f(x) \leq f(y) $ を利用できる点が単体上には存在しないことがわかり，単体上だけを見ると単調関数は特に性質のない関数であるように見える．よって，単体上における単調関数の最適化は，一般的な大域的最適化問題を解くことと同程度に困難であることが予想される．しかし，単体以外の領域の情報を利用し，単体上の関数値の下界を得ることができる．
+この命題から，単調増加関数の定義である $ x \leq y \Rightarrow f(x) \leq f(y) $ を利用できる点が単体上には存在しないことがわかり，単体上だけを見ると単調関数は特に性質のない関数であるように見える．このことから，単体上の単調関数の最適化問題の困難さがうかがえる．
+
+\section{単体上の任意の関数から単調関数への変換}
+
+単体 $ c \Delta_n $ 上の任意の関数を $ \mathbb{R}_+^n $ 上の単調増加関数に変換できることを示す．まずはある領域における関数値の下界値と上界値を定義する．
+
+\begin{definition}
+領域 $ A \subseteq \mathbb{R}^n $ における関数 $ f $ の下界値を $ \underline{f}_A $ としたとき，以下が成り立つ．
+$$ \forall x \in A, \; f(x) \geq \underline{f}_A $$
+\end{definition}
+
+\begin{definition}
+領域 $ A \subseteq \mathbb{R}^n $ における関数 $ f $ の上界値を $ \overline{f}_A $ としたとき，以下が成り立つ．
+$$ \forall x \in A, \; f(x) \leq \overline{f}_A $$
+\end{definition}
+
+ここで一般に，下限値以下の値は全て下界値となるため，下界値は複数存在するが，ここでは以下を満たすもののみを $ \underline{f} $ として扱う
+$$ \forall A, B \subseteq \mathbb{R}^n, \; A \subseteq B \Rightarrow \underline{f}_A \geq \underline{f}_B $$
+同様に上界値についても，以下を満たすもののみを $ \overline{f} $ として扱う
+$$ \forall A, B \subseteq \mathbb{R}^n, \; A \subseteq B \Rightarrow \overline{f}_A \leq \overline{f}_B $$
+この設定の妥当性について考えてみると，関数値の下限について
+$$ \forall A, B \subseteq \mathbb{R}^n, \; A \subseteq B \Rightarrow \inf_{x \in A}f(x) \geq \inf_{x \in B}f(x) $$
+が成り立つことと，上限について
+$$ \forall A, B \subseteq \mathbb{R}^n, \; A \subseteq B \Rightarrow \sup_{x \in A}f(x) \leq \sup_{x \in B}f(x) $$
+が成り立つことを考えると自然であることがわかる．\par
+以上のような下界値と上界値を利用し，単体上の任意の関数を $ f : c \Delta_n \to \mathbb{R} $ としたとき，$ \hat{f} : \mathbb{R}_+^n \to \mathbb{R} $ を以下のように定義する．
+
+\begin{align*}
+\hat{f}(x) =
+\begin{cases}
+\underline{f}_{A_x}, \; A_x = \Set{x' \in c \Delta_n | x' \geq x } & ( \: \mbox{If } \sum_{i=1}^{n}x_i \leq c \: ) \\
+\overline{f}_{c \Delta_n} & (\mbox{ Otherwise })
+\end{cases}
+\end{align*}
+
+ここで，$ \sum_{i=1}^{n}x_i \leq c $ である条件は，原点から見たときに $ x $ が単体の内側にある条件であり，一方 $ \sum_{i=1}^{n}x_i > c $ である条件は $ x $ が単体の向こう側にあることである．\par
+ある点 $ x $ を選んだときの，$ A_x $ を図 \ref{fig:a_on_simplex} に図示した．薄い青色の領域が元の単体 $ c \Delta_n $，赤い点が $ x $，濃い青色の領域が $ A_x $ を表している．$ A_x $ が単体の部分領域となっており，その要素はすべて $ x $ よりも大きいことがわかる．\par
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=9cm]{graphs/a_on_simplex.pdf}
+\caption{ある点 $ x $ に対する $ A_x = \Set{x' \in c \Delta_n | x' \geq x} $}
+\label{fig:a_on_simplex}
+\end{center}
+\end{figure}
+
+さらに，$ A_x $ について以下のことが言える．
+
+\begin{proposition} \label{prop:a_x_is_simplex}
+$ \sum_{i = 1}^{n} x_i \leq c $ であるような $ x \in \mathbb{R}_+^n $ についての $ A_x = \Set{x' \in c \Delta_n | x' \geq x} $ は単体である．
+
+\begin{proof}
+\begin{align*}
+A_x = & \; \Set{x' \in c \Delta_n | x' \geq x} \\
+= & \; \Set{x' \in \mathbb{R}_+^n | \sum_{i = 1}^{n} x'_i = c, \; x' \geq x}
+\end{align*}
+あらたに変数 $ y \in \mathbb{R}_+^n $ を用意し $ y = x' - x $ とすると，
+$$ A_x = \Set{y \in \mathbb{R}_+^n | \sum_{i = 1}^{n} y_i = c - \sum_{i = 1}^{n} x_i} $$
+$ c' = c - \sum_{i = 1}^{n} x_i $ とすると，
+$$ A_x = \Set{y \in c' \Delta_n} $$
+よって $ A_x $ は単体である．
+\end{proof}
+
+\end{proposition}
+
+ここで $ \hat{f} $ の定義を見てみると，利用しているものは $ f $ の $ A_x $ における下界値，$ c \Delta_n $ における上界値のみである．命題 \ref{prop:a_x_is_simplex} より，$ A_x, c \Delta_n $ は単体であるから，関数の単体上における下界値と上界値を調べるだけで $ \hat{f} $ の生成ができるということである．\par
+次に $ \hat{f} $ が単調増加関数であることを示す．
+
+\begin{proposition}
+$ \hat{f} : \mathbb{R}_+^n \to \mathbb{R} $ は単調増加関数である．
+
+\begin{proof}
+背理法で示す．$ x \leq y \Rightarrow \hat{f}(x) > \hat{f}(y) $ となるような $ x, y \in \mathbb{R}_+^n $ が存在すると仮定する．\\
+$ \hat{f} $ の定義をするときに利用した場合分けと同じ場合分けを $ x, y $ それぞれに対して行って考える．つまり，4つに場合分けして考える．\\
+(i) $ \; \sum_{i = 1}^{n} x_i \leq c, \sum_{i = 1}^{n} y_i \leq c $ である場合
+\begin{align*}
+x \leq y \; \Rightarrow & \; \Set{x' \in c \Delta_n | x' \geq x} \supseteq \Set{x' \in c \Delta_n | x' \geq y} \\
+\Rightarrow & \; A_x \supseteq A_y \\
+\Rightarrow & \; \underline{f}_{A_x} \leq \underline{f}_{A_y} \\
+\Rightarrow & \; \hat{f}(x) \leq \hat{f}(y)
+\end{align*}
+$ \;\;\;\; $ これは $ x \leq y \Rightarrow \hat{f}(x) > \hat{f}(y) $ に矛盾する．\\
+\\
+(ii) $ \; \sum_{i = 1}^{n} x_i > c, \sum_{i = 1}^{n} y_i > c $ である場合
+\begin{align*}
+\hat{f}(x) = \hat{f}(y) = \overline{f}_{c \Delta_n}
+\end{align*}
+$ \;\;\;\; $ よって $ x \leq y \Rightarrow \hat{f}(x) > \hat{f}(y) $ に矛盾．\\
+\\
+(iii) $ \; \sum_{i = 1}^{n} x_i \leq c, \sum_{i = 1}^{n} y_i > c $ である場合 \\
+$ \;\;\;\; $ 一般に $ X \subseteq Y \Rightarrow \underline{f}_X \leq \overline{f}_Y $ が成り立つことから， 
+\begin{align*}
+A_x \subseteq c \Delta_n \; \Rightarrow & \; \underline{f}_{A_x} \leq \overline{f}_{c \Delta_n} \\
+\Rightarrow & \; \hat{f}(x) \leq \hat{f}(y)
+\end{align*}
+$ \;\;\;\; $ これは $ x \leq y \Rightarrow \hat{f}(x) > \hat{f}(y) $ に矛盾する．\\
+\\
+(iv) $ \; \sum_{i = 1}^{n} x_i > c, \sum_{i = 1}^{n} y_i \leq c $ である場合
+\begin{align*}
+x \leq y \; \Rightarrow & \; x_i \leq y_i \; (i = 1, ..., n) \\
+\Rightarrow & \; \sum_{i = 1}^{n} x_i \leq \sum_{i = 1}^{n} y_i
+\end{align*}
+$ \;\;\;\; $ よって $ x \leq y $ のとき $ \sum_{i = 1}^{n} x_i > c, \sum_{i = 1}^{n} y_i \leq c $ であるような状態は存在しない．\\
+\\
+以上により $ x \leq y \Rightarrow \hat{f}(x) > \hat{f}(y) $ となるような $ x, y \in \mathbb{R}_+^n $ が存在しないことがわかり，以下が示された．
+$$ \forall x, y \in \mathbb{R}_+^n, \; x \leq y \Rightarrow \hat{f}(x) \leq \hat{f}(y) $$
+つまり，$ \hat{f} : \mathbb{R}_+^n \to \mathbb{R} $ が単調増加関数であること示された．
+\end{proof}
+\end{proposition}
+
+単体上の任意の関数 $ f $ を単調増加関数 $ \hat{f} $ に変換することができたが，単体上を見てみると $ \forall x \in c \Delta_n, \; f(x) = \hat{f}(x) $ とできることが $ \hat{f} $ の定義からわかる．よって，変換後の関数を単体上で最適化することで，元の問題の単体上における最適化ができる．つまり，単調関数の単体上における最適化問題は，任意の関数の単体上における最適化問題を部分問題に含む．ただし変換の過程で，単体における関数の下界値と上界値を求めているため，それらの導出が簡単に行えるような関数に対してのみ，効率的にこの変換手法を適用することができる．\par
+さらに，Rubinov ら \cite{rubinov} により，リプシッツ関数のリプシッツ定数を利用して，単体上のリプシッツ最適化問題が単調関数最適化問題に変換できることが証明されており，単調関数最適化問題はリプシッツ最適化問題を部分問題に含むことがわかる．リプシッツ最適化問題は Pinter \cite{pinter} により分枝限定法で解く方法が提案されているが，このような問題を部分問題に含むということである．\par
+また，リプシッツ定数が未知であるリプシッツ関数の単体上における最適化問題を解く手法として，Jones ら \cite{direct} による手法である DIRECT を拡張した DISIMPL \cite{disimpl} という手法が存在する．この問題はリプシッツ定数が未知であるため，Rubinov らによる変換は利用できないが，DISIMPL では実行可能領域における下界値を算出しているため，上で示した変換手法を効率的に利用でき，このような問題も本問題の部分問題に含むだろう．\par
+以上のように，本問題は多くの問題を部分問題に含み，問題が困難であることと一般性を持つことがわかった．
+
+\section{単調関数の単体上における下界} \label{sec:lower_bound_of_monotonic_function_on_simplex}
+
+単調関数の単体上における最適化問題の困難さについて論じてきたが，単調関数の単体以外の領域の情報を利用し，単体上の関数値の下界値を得ることができる．
 
 \begin{theorem}\label{thm:lower_bound_of_monotonic_function}
-以下のような成分を持つ $ \underline{x}_A \in \mathbb{R}^n_{+} $ は，単体の任意の部分領域 $ A \subseteq \Delta_n $ における，単調増加関数 $ f :  \mathbb{R}^n_{+} \to \mathbb{R} $ の関数値の下界 $ f(\underline{x}_A) $ を与える．
-$$ (\underline{x}_A)_i = \min_{y \in A } y_i \; (i = 1, ..., n) $$
+以下のような成分を持つ $ \underline{x}_A \in \mathbb{R}^n_{+} $ は，単体の任意の部分領域 $ A \subseteq c \Delta_n $ における，単調増加関数 $ f :  \mathbb{R}^n_{+} \to \mathbb{R} $ の関数値の下界値 $ f(\underline{x}_A) $ を与える．
+$$ (\underline{x}_A)_i = \inf_{y \in A } y_i \; (i = 1, ..., n) $$
 
 \begin{proof}
 $ \underline{x}_A $ の定義より，$ A $ 中の任意の要素 $ x $ について $ \underline{x}_A \leq x $ が成り立つ．\\
@@ -193,8 +314,8 @@ $$ \forall x \in A, f(\underline{x}_A) \leq f(x) $$
 
 \end{theorem}
 
-$ \underline{x}_A $ を算出するためには単体の部分領域 $ A $ における，次元ごとの最小成分を求める必要がある．$ A $ の形状がわからない場合，この処理は一般の最適化問題を解くことであるから困難である．ただし，特に $ A $ が単体である場合はその単体のすべての頂点を調べるだけで $ \underline{x}_A $ の算出は完了する．なぜなら単体は凸であるから，ある次元の最小の変数値は必ず頂点が持つ．よって，$ A $ が $ n - 1 $ 次元単体であった場合，$ n $ 個の頂点を調べるだけで $ \underline{x}_A $ の算出は完了し，その計算量は $ O(n) $ である． \par
-例えば，$ (0.7, 0.3, 0)^T, (0, 1, 0)^T, (0, 0.3, 0.7)^T $ を頂点に持つような2次元単体 $ \Delta_A $ は $ \Delta_3 $ の部分領域であるが，この単体における $ \underline{x}_{\Delta_A} $ は，それぞれの次元の最小成分を集めた $ (0, 0.3, 0) $ である．図 \ref{fig:lower_bound_of_simplex} は $ \Delta_3 $ が薄い青色，$ \Delta_A $ が青色，$ \underline{x}_{\Delta_A} $ が赤い点で描画されている図である．\par
+$ \underline{x}_A $ を算出するためには単体の部分領域 $ A $ における，次元ごとの最小成分を求める必要がある．$ A $ の形状がわからない場合，この処理は一般の最適化問題を解くことであるから困難である．ただし，特に $ A $ が単体である場合はその単体のすべての頂点を調べ上げるだけで $ \underline{x}_A $ の算出は完了する．なぜなら単体は凸であるから，ある次元の最小の変数値は必ず頂点が持つ．よって，$ A $ が $ n - 1 $ 次元単体であった場合，$ n $ 個の頂点を調べるだけで $ \underline{x}_A $ の算出は完了し，その計算量は $ O(n) $ である． \par
+例えば，$ (0.7, 0.3, 0)^T, (0, 1, 0)^T, (0, 0.3, 0.7)^T $ を頂点に持つような2次元単体 $ A $ は $ \Delta_3 $ の部分領域であるが，この単体における $ \underline{x}_{A} $ は，それぞれの次元の最小成分を集めた $ (0, 0.3, 0) $ である．図 \ref{fig:lower_bound_of_simplex} は，薄い青色の領域が $ \Delta_3 $，濃い青色の領域が $ A $，赤い点が $ \underline{x}_{A} $ を表している．\par
 
 \begin{figure}
 \begin{center}
@@ -206,12 +327,9 @@ $ \underline{x}_A $ を算出するためには単体の部分領域 $ A $ に�
 
 \chapter{関連研究}
 
-\section{分枝限定法} \label{sec:bnb}
+本研究で構築するアルゴリズムの中で利用する先行研究を説明する．グリッド化した単体上で分枝限定法を実行するために，まずは単体のグリッド化の定義と性質の説明を行い，次に一般的な分枝限定法のアルゴリズムの説明を行う．最後に，分枝限定法における分枝操作を行うための単体の分割方法について説明する．
 
-ここでは一般的な分枝限定法について説明する．分枝限定法とは，大域的最適化の汎用アルゴリズムであり，広く利用されている．実行可能領域を分割し，それぞれの分割された領域の下界値，上界値と暫定最適値を比較することで最適解が存在し得ない領域を削除し，探索する領域を絞り込む．この操作を繰り返して効率的に探索する最適化手法である．\par
-最小化問題を解く場合を考えながらアルゴリズムの説明を行う．分枝限定法は大きく分けて分枝・限定の2種類の操作から成る．分枝操作では，実行可能領域の集合からある領域 $ S $ を選択し，$ S_i \cup S_j = \phi \: (i \neq j) $ を満たす部分領域に分割する．分割の方法や分割数はアルゴリズムによって異なり，問題に適した方法で分割することが重要である．次に限定操作では，それぞれの部分領域の下界値を求める．その下界値が，他の領域の上界値よりも大きい場合や，暫定最適値よりも大きい場合はその部分領域に最適解が存在し得ないため，その領域の探索を打ち切る．ある領域の探索を打ち切り，削除することを刈り込みと呼ぶ．領域の刈り込みを効率的に行うには，よい下界・上界を得ること，探索中に素早くよい暫定最適値を見つけることが重要である．以上の操作をすべての領域を刈り込むまで繰り返し実行し，終了時点の最適値を問題の最適値として出力する．\par
-
-\section{単体のグリッド化}
+\section{単体のグリッド化} \label{sec:gridize_simplex}
 
 De Klerk ら \cite{deklerk} により行なわれた，グリッド化した単体上での最適化について説明する．グリッド化とは，実行可能領域に格子を考え，格子上の点だけを抽出し，実行可能領域の内部に等間隔に存在する点群を得ることである．そして，得られた点群の中で最も良い点を探す．グリッド化によって解候補の数は減少し，解きやすくなる．\par
 単体のグリッド化の定義を行う．$ m \in \mathbb{Z}_+ $ を利用して，単位単体の各辺を $ m $ 分割して得られるグリッド化された単体は以下のように表せる．
@@ -230,7 +348,7 @@ $$ G(c, n, m) \triangleq \Set{x \in c \Delta_n | mx \in \mathbb{Z}_+^n} $$
 $$ | G(c, n, m) | = \binom{n + mc - 1}{mc} $$
 \end{theorem}
 
-これは $ m $ を固定した場合の $ n $ の多項式であり，グリッド化した単体上を全探索しても $ n $ の多項式オーダーでアルゴリズムが完了することがわかる．しかし，$ n, m $ を大きくした場合の $ \binom{n + mc - 1}{mc} $ はとても大きい数であり，例えば $ c = 1, n = 10, m = 100 $ の場合，生成される点の数はおよそ $ 8.5 \times 10^{12} $ であり，全探索は難しいと容易に想像できる．\par
+これは $ m $ を固定した場合の $ n $ の多項式であり，グリッド化した単体上を全探索しても $ n $ の多項式オーダーでアルゴリズムが完了することがわかる．\par
 図 \ref{fig:grid_simplex} は $ c=1, n=4, m=2 $ としてグリッド化した単体の図である．単位単体 $ \Delta_4 $ とグリッド $ G(1, 4, 2) $ を描画している．グリッドを数えると10個であることがわかり，これは $ \binom{4 + 2 - 1}{2} $ と一致することが確認できる．\par
 
 \begin{figure}
@@ -240,6 +358,13 @@ $$ | G(c, n, m) | = \binom{n + mc - 1}{mc} $$
 \label{fig:grid_simplex}
 \end{center}
 \end{figure}
+
+しかしながら，$ n, m $ を大きくした場合の $ \binom{n + mc - 1}{mc} $ はとても大きい数であり，例えば $ c = 1, n = 10, m = 100 $ の場合，生成される点の数はおよそ $ 8.5 \times 10^{12} $ であり，全探索は難しいと容易に想像できる．よって，本研究では全探索よりも効率的な探索方法を提案し，グリッド化した単体上の最適化問題を効率的に解きたい．\par
+
+\section{分枝限定法} \label{sec:bnb}
+
+ここでは一般的な分枝限定法について説明する．分枝限定法とは，大域的最適化の汎用アルゴリズムであり，広く利用されている．実行可能領域を分割し，それぞれの分割された領域の下界値，上界値と暫定最適値を比較することで最適解が存在し得ない領域を削除し，探索する領域を絞り込む．この操作を繰り返して効率的に探索する最適化手法である．\par
+最小化問題を解く場合を考えながらアルゴリズムの説明を行う．分枝限定法は大きく分けて分枝・限定の2種類の操作から成る．分枝操作では，実行可能領域の集合からある領域 $ S $ を選択し，$ S_i \cup S_j = \phi \: (i \neq j) $ を満たす部分領域に分割する．分割の方法や分割数はアルゴリズムによって異なり，問題に適した方法で分割することが重要である．次に限定操作では，それぞれの部分領域の下界値を求める．その下界値が，他の領域の上界値よりも大きい場合や，暫定最適値よりも大きい場合はその部分領域に最適解が存在し得ないため，その領域の探索を打ち切る．ある領域の探索を打ち切り，削除することを刈り込みと呼ぶ．領域の刈り込みを効率的に行うには，よい下界・上界を得ること，探索中に素早くよい暫定最適値を見つけることが重要である．以上の操作をすべての領域を刈り込むまで繰り返し実行し，終了時点の最適値を問題の最適値として出力する．\par
 
 \section{グリッド化された単体の分割} \label{sec:partition}
 
@@ -379,9 +504,11 @@ $ T $ の総ノード数は $ 2 \binom{n + m - 1}{m} - 1 $ である
 $$ (2r_1 - 1) + (2r_2 - 1) + 1 = 2(r_1 + r_2) - 1 = 2r - 1 $$
 \end{proof}
 
-\chapter{提案する手法}
+定理 \ref{thm:total_node} により，$ G(1, n, m) $ を根ノードとして分枝限定法を実行したとき，分割回数が $ 2 \binom{n + m - 1}{m} - 1 $ ，つまり $ n $ の多項式であることが示された．
 
-本章では，単体上の単調関数を分枝限定法で最適化する提案手法の説明をする．分枝限定法において，領域の分割方法，下界の良さはアルゴリズムの速度に対してとても重要であることを \ref{sec:bnb} 節で述べたが，本研究では単調関数の下界に定理  \ref{thm:lower_bound_of_monotonic_function} で得られるものを利用し，分割方法は \ref{sec:partition} 節で説明したもの利用する．\par
+\chapter{提案する方法}
+
+本章では，グリッド化した単体上の単調関数を分枝限定法で最適化する提案手法の説明をする．分枝限定法において，領域の分割方法，下界の良さはアルゴリズムの速度に対してとても重要であることを \ref{sec:bnb} 節で述べたが，本研究では単調関数の下界に定理  \ref{thm:lower_bound_of_monotonic_function} で得られるものを利用し，分割方法は \ref{sec:partition} 節で説明したもの利用する．\par
 
 \section{分割する次元の選択}
 
@@ -520,9 +647,10 @@ $ n = 3, m = 3 $ の問題を解いた際の二分木 $ T $ の構造の例を�
 
 \section{計算量の解析}
 
-Algorithm \ref{algo:main} の計算量を考える．まずは内部で利用している処理を解析する．10行目で二分木から単体を生成している処理は \ref{sec:generate_problem_from_btree} 節で説明した通り高々 $ O(n + m) $，11行目で下界を与える点を計算する処理は \ref{sec:character_of_simplex_on_monotonic_function} 節の通り $ O(n) $，16行目の線形探索は Algorithm \ref{algo:line_search} を利用して高々 $ O(m) $，最後に，22行目の分割する次元を決定する処理は Algorithm \ref{algo:cutting_dimension} により単体の頂点を調べ上げれば完了するため $ O(n) $ である．以上により，$ m $ を固定したときのすべてのサブモジュールの計算量は高々 $ O(n) $ であることがわかった．さらに，定理 \ref{thm:total_node} により，分割の情報を保持する二分木 $ T $ の総ノード数は $ 2 \binom{n + m - 1}{m} - 1 $ であることがわかっており，これは $ n $ に対する多項式である．多項式の多項式は多項式である性質から，Algorithm \ref{algo:main} 全体の計算量は $ n $ の多項式であることがわかった．\par
+Algorithm \ref{algo:main} の計算量を考える．まずは内部で利用している処理を解析する．10行目で二分木から単体を生成している処理は \ref{sec:generate_problem_from_btree} 節で説明した通り高々 $ O(n + m) $，11行目で下界を与える点を計算する処理は \ref{sec:lower_bound_of_monotonic_function_on_simplex} 節の通り $ O(n) $，16行目の線形探索は Algorithm \ref{algo:line_search} を利用して高々 $ O(m) $，最後に，22行目の分割する次元を決定する処理は Algorithm \ref{algo:cutting_dimension} により単体の頂点を調べ上げれば完了するため $ O(n) $ である．以上により，$ m $ を固定したときのすべてのサブモジュールの計算量は高々 $ O(n) $ であることがわかった．さらに，定理 \ref{thm:total_node} により，分割の情報を保持する二分木 $ T $ の総ノード数は $ 2 \binom{n + m - 1}{m} - 1 $ であることがわかっており，これは $ n $ に対する多項式である．多項式の多項式は多項式である性質から，Algorithm \ref{algo:main} 全体の計算量は $ n $ の多項式であることがわかった．\par
+\ref{sec:gridize_simplex} 節で説明した De Klerk による単体のグリッド化では，グリッドの総数は $ \binom{n + m - 1}{m} $ であり，グリッドを全探索することで多項式時間で探索が完了するとしていた．本アルゴリズムの計算量も多項式時間であるが，最悪計算量はそれよりも多い．ただし，単体上の単調関数の下界を利用した刈り込み操作が行えるため，効率化が期待できる．本アルゴリズムの有用性を確認するために次章で実験結果を説明する．
 
-\chapter{数値実験}
+\chapter{実験}
 
 % TODO: 書く
 TODO: 書く
@@ -547,35 +675,45 @@ TODO: 書く
 
 \begin{thebibliography}{1}
 
-\bibitem{deklerk_survey}
-E De Klerk,
-\newblock The complexity of optimizing over a simplex, hypercube or sphere: a short survey,
-\newblock Central European Journal of Operations Research 16.2 (2008), pp. 111-125.
-
-\bibitem{tuy}
-H. Tuy,
-\newblock Monotonic optimization: Problems and solution approaches,
-\newblock SIAM Journal on Optimization 11.2 (2000), pp. 464-494.
-
 \bibitem{bomze}
 IM Bomze, and E De Klerk,
 \newblock Solving standard quadratic optimization problems via linear, semidefinite and copositive programming,
 \newblock Journal of Global Optimization 24.2 (2002), pp. 163-185.
+
+\bibitem{deklerk_survey}
+E De Klerk,
+\newblock The complexity of optimizing over a simplex, hypercube or sphere: a short survey,
+\newblock Central European Journal of Operations Research 16.2 (2008), pp. 111-125.
 
 \bibitem{deklerk}
 E De Klerk, D Den Hertog, and G. Elabwabi,
 \newblock On the complexity of optimization over the standard simplex,
 \newblock European journal of operational research 191.3 (2008), pp. 773-785.
 
-% \bibitem{direct}
-% DR Jones, CD Perttunen, and BE Stuckman,
-% \newblock Lipschitzian optimization without the Lipschitz constant,
-% \newblock Journal of Optimization Theory and Applications 79.1 (1993), pp. 157-181.
+\bibitem{direct}
+DR Jones, CD Perttunen, and BE Stuckman,
+\newblock Lipschitzian optimization without the Lipschitz constant,
+\newblock Journal of Optimization Theory and Applications 79.1 (1993), pp. 157-181.
 
-% \bibitem{disimple}
-% P Remigijus, and J Zilinskas,
-% \newblock Simplicial Lipschitz Optimization Without Lipschitz Constant,
-% \newblock Simplicial Global Optimization (2014), pp. 61-86.
+\bibitem{pinter}
+J. Pinter,
+\newblock Global Optimization in Action,
+\newblock Kluwer Academic Publishers, Volume 6, (1996).
+
+\bibitem{disimpl}
+P Remigijus, and J Zilinskas,
+\newblock Simplicial Lipschitz Optimization Without Lipschitz Constant,
+\newblock Simplicial Global Optimization (2014), pp. 61-86.
+
+\bibitem{rubinov}
+A. Rubinov, and M. Andramonov,
+\newblock Lipschitz programming via increasing convex-along-rays functions,
+\newblock Optimization Methods and Software 10.6 (1999), pp. 763-781.
+
+\bibitem{tuy}
+H. Tuy,
+\newblock Monotonic optimization: Problems and solution approaches,
+\newblock SIAM Journal on Optimization 11.2 (2000), pp. 464-494.
 
 \bibitem{tonosaki}
 外崎真造,

@@ -1,10 +1,11 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces $ (0.7, 0.3, 0)^T, (0, 1, 0)^T, (0, 0.3, 0.7)^T $ を頂点に持つような単体の下界を与える点}}{6}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces ある点 $ x $ に対する $ A_x = \Set {x' \in c \Delta _n | x' \geq x} $}}{7}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces $ (0.7, 0.3, 0)^T, (0, 1, 0)^T, (0, 0.3, 0.7)^T $ を頂点に持つような単体の下界を与える点}}{10}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces グリッド化された単体 $ G(1, 4, 2) $}}{8}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces 2つに分割されたグリッド化された単体}}{11}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces グリッド化された単体 $ G(1, 4, 2) $}}{12}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 2つに分割されたグリッド化された単体}}{15}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces $ n = 3, m = 3 $ の問題を解いたときの二分木 $ T $ の例}}{15}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces $ n = 3, m = 3 $ の問題を解いたときの二分木 $ T $ の例}}{19}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
