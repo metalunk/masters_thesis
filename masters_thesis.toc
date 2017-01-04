@@ -24,8 +24,9 @@
 \contentsline {section}{\numberline {4.5}並列化}{22}
 \contentsline {section}{\numberline {4.6}計算量の解析}{22}
 \contentsline {chapter}{\numberline {第5章}実験}{23}
-\contentsline {section}{\numberline {5.1}条件}{23}
-\contentsline {section}{\numberline {5.2}実験結果}{23}
-\contentsline {chapter}{\numberline {第6章}結論}{24}
-\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }謝辞}{25}
-\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }参考文献}{26}
+\contentsline {section}{\numberline {5.1}実験の条件}{23}
+\contentsline {section}{\numberline {5.2}問題}{23}
+\contentsline {section}{\numberline {5.3}実験結果}{24}
+\contentsline {chapter}{\numberline {第6章}結論}{29}
+\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }謝辞}{30}
+\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }参考文献}{31}

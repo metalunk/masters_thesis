@@ -72,8 +72,8 @@
 
 \chapter{序論}
 
-単体上の最適化問題はとても単純な制約条件を持ち，多くの応用例を持つが，多様な実問題からこのような問題が考えられた経緯がある．単体上の最適化問題は広く研究されており，De Klerk \cite{deklerk_survey} により，目的関数が連続である場合や二次関数である場合の，問題の困難さや最適化手法について論じられている．本研究では目的関数に凸性を仮定していないが，非凸関数の最適化は凸関数の最適化よりも困難であることが知られている．本研究で扱う問題の目的関数は，単調性を有した非凸関数である．単調性とは，変数の値を増やすとそれに伴って関数値も増加もしくは減少するような関数の性質である．目的関数と制約条件がともに単調関数であるような問題の最適化手法は Tuy \cite{tuy} などにより研究されているが，本論文で扱う単調関数の単体上の最適化はこれまであまり研究されていない．本研究では，関数の下界値を利用することで単体上の関数から単調関数への変換ができることを示し，本問題の困難さと，多くの問題の一般化になっていることがわかった．\par
-提案する手法は，グリッド化した単体上の単調関数を分枝限定法で最適化するアルゴリズムである．Bomze, De Klerk \cite{bomze} は単体上の最適化問題に対して，単体をグリッド化することで多項式時間アルゴリズムを構築した．本研究では単体をグリッド化した上で，目的関数に単調性を仮定することで得た単体上の下界値を利用し，分枝限定法を実行した．分枝限定法における分枝規則には，単体を2つの単体に分割する手法を利用し，この手法が多項式時間近似スキームであることを示した．さらに，計算実験によって本アルゴリズムの有用性を示した．
+単体上の最適化問題はとても単純な制約条件を持ち，多くの応用例を持つが，多様な実問題からこのような問題が考えられた経緯がある．単体上の最適化問題は広く研究されており，de Klerk \cite{deklerk_survey} により，目的関数が連続である場合や二次関数である場合の，問題の困難さや最適化手法について論じられている．本研究では目的関数に凸性を仮定していないが，非凸関数の最適化は凸関数の最適化よりも困難であることが知られている．本研究で扱う問題の目的関数は，単調性を有した非凸関数である．単調性とは，変数の値を増やすとそれに伴って関数値も増加もしくは減少するような関数の性質である．目的関数と制約条件がともに単調関数であるような問題の最適化手法は Tuy \cite{tuy} などにより研究されているが，本論文で扱う単調関数の単体上の最適化はこれまであまり研究されていない．本研究では，関数の下界値を利用することで単体上の関数から単調関数への変換ができることを示し，本問題の困難さと，多くの問題の一般化になっていることがわかった．\par
+提案する手法は，グリッド化した単体上の単調関数を分枝限定法で最適化するアルゴリズムである．Bomze, de Klerk \cite{bomze} は単体上の最適化問題に対して，単体をグリッド化することで多項式時間アルゴリズムを構築した．本研究では単体をグリッド化した上で，目的関数に単調性を仮定することで得た単体上の下界値を利用し，分枝限定法を実行した．分枝限定法における分枝規則には，単体を2つの単体に分割する手法を利用し，この手法が多項式時間近似スキームであることを示した．さらに，計算実験によって本アルゴリズムの有用性を示した．
 
 \section{記号の定義}
 
@@ -331,7 +331,7 @@ $ \underline{x}_A $ を算出するためには単体の部分領域 $ A $ に�
 
 \section{単体のグリッド化} \label{sec:gridize_simplex}
 
-De Klerk ら \cite{deklerk} により行なわれた，グリッド化した単体上での最適化について説明する．グリッド化とは，実行可能領域に格子を考え，格子上の点だけを抽出し，実行可能領域の内部に等間隔に存在する点群を得ることである．そして，得られた点群の中で最も良い点を探す．グリッド化によって解候補の数は減少し，解きやすくなる．\par
+de Klerk ら \cite{deklerk} により行なわれた，グリッド化した単体上での最適化について説明する．グリッド化とは，実行可能領域に格子を考え，格子上の点だけを抽出し，実行可能領域の内部に等間隔に存在する点群を得ることである．そして，得られた点群の中で最も良い点を探す．グリッド化によって解候補の数は減少し，解きやすくなる．\par
 単体のグリッド化の定義を行う．$ m \in \mathbb{Z}_+ $ を利用して，単位単体の各辺を $ m $ 分割して得られるグリッド化された単体は以下のように表せる．
 $$ \Set{ x \in \Delta_n | mx \in \mathbb{Z}_+^n } $$
 次に，$ c \in \mathbb{Z}_+ $ を利用して，各辺の長さが $ c $ であるような単体 $ c \Delta_n $ をグリッド化したもの $ G(c, n, m) $ を以下のように定義する．
@@ -639,34 +639,165 @@ $ n = 3, m = 3 $ の問題を解いた際の二分木 $ T $ の構造の例を�
 \end{algorithmic}
 \end{algorithm}
 
-\section{並列化}
+\section{並列化} \label{sec:parallel}
 
 本アルゴリズムの並列化について述べる．分割の情報を保持する二分木 $ T $ における，同一列のノードには相互に依存性はないため，列ごとに処理が完了していることを保証すればアルゴリズムを並列化できる．Algorithm \ref{algo:cutting_dimension} による分割する次元の計算や，Algorithm \ref{algo:line_search} による線形探索を並行して実行できるため，アルゴリズム全体に対して速度の向上が図れるかもしれない．\par
 ただし，$ G(1, n, m) $ を実行可能領域とする問題に対して，Algorithm \ref{algo:cutting_dimension} のオーダーは高々 $ O(n) $ で，Algorithm \ref{algo:line_search} は高々 $ O(m) $ であるため，それほど重い処理ではない．よって問題の大きさによっては，大きな速度の改善が見られない，もしくはスレッドの切り替えのオーバーヘッドがかさみむしろ改悪することも考えうる．\par
 具体的には，Algorithm \ref{algo:main} における 10 - 23 行目を並列化できる．
 
-\section{計算量の解析}
+\section{計算量の解析} \label{sec:analysis}
 
 Algorithm \ref{algo:main} の計算量を考える．まずは内部で利用している処理を解析する．10行目で二分木から単体を生成している処理は \ref{sec:generate_problem_from_btree} 節で説明した通り高々 $ O(n + m) $，11行目で下界を与える点を計算する処理は \ref{sec:lower_bound_of_monotonic_function_on_simplex} 節の通り $ O(n) $，16行目の線形探索は Algorithm \ref{algo:line_search} を利用して高々 $ O(m) $，最後に，22行目の分割する次元を決定する処理は Algorithm \ref{algo:cutting_dimension} により単体の頂点を調べ上げれば完了するため $ O(n) $ である．以上により，$ m $ を固定したときのすべてのサブモジュールの計算量は高々 $ O(n) $ であることがわかった．さらに，定理 \ref{thm:total_node} により，分割の情報を保持する二分木 $ T $ の総ノード数は $ 2 \binom{n + m - 1}{m} - 1 $ であることがわかっており，これは $ n $ に対する多項式である．多項式の多項式は多項式である性質から，Algorithm \ref{algo:main} 全体の計算量は $ n $ の多項式であることがわかった．\par
-\ref{sec:gridize_simplex} 節で説明した De Klerk による単体のグリッド化では，グリッドの総数は $ \binom{n + m - 1}{m} $ であり，グリッドを全探索することで多項式時間で探索が完了するとしていた．本アルゴリズムの計算量も多項式時間であるが，最悪計算量はそれよりも多い．ただし，単体上の単調関数の下界を利用した刈り込み操作が行えるため，効率化が期待できる．本アルゴリズムの有用性を確認するために次章で実験結果を説明する．
+\ref{sec:gridize_simplex} 節で説明した de Klerk による単体のグリッド化では，グリッドの総数は $ \binom{n + m - 1}{m} $ であり，グリッドを全探索することで多項式時間で探索が完了するとしていた．本アルゴリズムの計算量も多項式時間であるが，最悪計算量はそれよりも大きい．ただし，単体上の単調関数の下界を利用した刈り込み操作が行えるため，効率化が期待できる．本アルゴリズムの有用性を確認するために次章で実験結果を説明する．
 
 \chapter{実験}
 
-% TODO: 書く
-TODO: 書く
-\section{条件}
+\ref{sec:gridize_simplex} 節で説明した de Klerk による手法と，提案する手法であるグリッド化した単体を分枝限定法で最適化する手法の性能を，実験によって比較する．\ref{sec:analysis} 節で計算量の解析をした通り，最悪計算量は提案手法の方が悪いが，提案手法は下界値を利用した刈り込み操作が行えるため，効率的に刈り込みができれば既存手法よりも良い結果を出すことが期待できる．\par
+また，それぞれのアルゴリズムはグリッド化した単体上における大域的最適化アルゴリズムであり，必ず最適解を得ることができるため，精度についての実験はここでは不要である．\par
+
+\section{実験の条件}
+
+本実験では，単体上の単調増加関数の最小化問題を解いて両アルゴリズムを比較するが，単体上の単調関数最適化問題はあまりこれまで研究されておらず，ベンチマーク問題があまりない．そこで，Bagirov, Rubinov \cite{bagirov} による単体上における IPH 関数最適化の研究で利用されているベンチマーク問題を利用する．IPH 関数とは，Increasing positively homogeneous function のことであり，単調増加性を有しており，本問題のベンチマーク問題としても利用できる．\par
+本手法では単体のグリッド化を行うが，事前にグリッドの分割数を決める必要がある．本来，グリッドの分割数は解きたい問題の性質によって決定するべきだが，ここでは性能を比較することが目的であるため，$ m = 100 $ として全ての実験を行う．\par
+\ref{sec:parallel} 節でアルゴリズムの並列化について説明した通り，提案手法は並列化することができたが，既存手法は並列化できていない．平等に実験を行うため，提案手法は並列化したものとそうでないものの両方を計測し，アルゴリズム自体の比較は並列化していないもの同士で行う．\par
+実験は Intel Core i7-4790K 4.00GHz, 8 Processors を持つ計算機で行い，プログラムは C++ で記述した．\par
+
+\section{問題}
+
+$ f_1 $ は以下のような maxmin 関数の特殊ケースである．\par
+
+$$ f_1(x) = \max_{i \in I} \{a_i x_i \} + \min_{j \in I} \{b_j x_j \} $$
+$$ a_i = 2 + 0.5 i, b_j = (j + 2) (n - j + 2), \;\; i, j \in I $$
+$$ I = \Set{1, 2, ..., n} $$
+
+$ f_2 $ は以下のような内積の計算を含む関数である．ここで，$ x, y $ の内積は $ \langle x, y \rangle = \sum_{i = 1}^{n} x_i y_i $ と表すとする．\par
+
+$$ f_2(x) = \max_{i = 1, 2, ..., 40} \langle a^i, x \rangle + \min_{j = 1, 2, ..., 20} \langle b^j, x \rangle $$
+$$ (a^i)_k = \frac{20i}{k(1 + | i - k |)}, \;\; k = 1, 2, ..., n $$
+$$ (b^j)_k = 5 | \sin{(j)} \sin{(k)} |, \;\; k = 1, 2, ..., n $$
+
 \section{実験結果}
+
+問題の次元を変化させ，それぞれのアルゴリズムの計算時間を計測した．de Klerk の手法を Enumeration，提案する手法を BnB，それを並列化したものを Parallel BnB としている．\par
+表 \ref{tbl:f_1_table} は目的関数を $ f_1 $ として解いた場合の各アルゴリズムの実行時間で，図 \ref{fig:f_1_time} はそのグラフである．数字が書かれていない部分は，実行時間がかかりすぎるため計測しなかった．Enumeration と BnB を比較してみると，BnB は4次元以上の問題で Enumeration よりも実行時間が短い．特に6次元について見てみると，BnB は Enumeration のおよそ 1/10 の時間で最適化が完了している．また，BnB と Parallel BnB を比較してみると，6次元，7次元では並列化によって計算時間がおよそ 65\% になっていることがわかる．\par
+次に，表 \ref{tbl:f_2_table} は目的関数を $ f_2 $ とした場合の実行時間で，図 \ref{fig:f_2_time} はそのグラフである．関数 $ f_2 $ はベクトルの内積計算を行っているため，$ f_1 $ よりも関数値を求めるのに時間がかかり，すべての場合で $ f_1 $ よりも時間がかかっている．ただし，この場合でも $ f_1 $ の場合と同様に，4次元以上の問題で Enumeration よりも BnB が計算時間が短い．さらに BnB と Parallel BnB を比べることで並列化について見てみると，3次元，4次元の場合は並列化によって計算時間が約 38\% になっており，これは $ f_1 $ の場合よりも効率がよい．この理由は，$ f_2 $ は関数値を求めるのに時間がかかるため，1スレッドの計算時間は長くなり，そのことによって並列化の効率が $ f_1 $ の場合よりも良くなっていることだと考えられる．\par
+次に，BnB, Parallel BnB において，単調関数の単体上における下界値を利用して刈り込まれたノードの数を，問題と次元ごとに比較する．ここでノードの数とは，\ref{sec:partition} 節における，単体を保持する二分木 $ T $ のノードの数であり，その最大数は定理 \ref{thm:total_node} によって $ 2 \binom{n + m - 1}{m} $ であることがわかっている．目的関数が $ f_1 $ の場合の刈り込まれたノードの数を表 \ref{tbl:f_1_eliminated}，図 \ref{fig:f_1_eliminated} に，$ f_2 $ の場合を表 \ref{tbl:f_2_eliminated}，図 \ref{fig:f_2_eliminated} に示した．どちらの関数についても，次元が増えると刈り込まれるノードの数が増えていることがわかる．特に $ f_1 $ では6次元以上の場合で 90\% 以上のノードが刈り込まれており，とても効率よく分枝限定法が動いていることがわかる．このために，$ f_2 $ の実験において BnB が Enumeration に対してより実行時間が短かったと考えられる．\par
+% TODO: より深い考察
+
+\newpage
+
+\begin{table}[h]
+\caption{目的関数が $ f_1 $ のときの次元ごとの各アルゴリズムの実行時間 (秒)}
+\label{tbl:f_1_table}
+\begin{center}
+\begin{tabular}{|c|r|r|r|} \hline
+次元 & Enumeration & BnB & Parallel BnB \\ \hline
+2 & 0.00014 & 0.00048 & 0.00049 \\
+3 & 0.0064 & 0.011 & 0.017 \\
+4 & 0.19 & 0.063 & 0.048 \\
+5 & 4.96 & 0.98 & 0.67 \\ 
+6 & 106.60 & 12.55 & 8.23 \\
+7 & 1961.75 & 143.43 & 98.60 \\
+8 & - & - & 952.27 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{graphs/f_1_time.pdf}
+\caption{目的関数が $ f_1 $ のときの次元ごとの各アルゴリズムの実行時間}
+\label{fig:f_1_time}
+\end{center}
+\end{figure}
+
+\newpage
+
+\begin{table}[h]
+\caption{目的関数が $ f_2 $ のときの次元ごとの各アルゴリズムの実行時間 (秒)}
+\label{tbl:f_2_table}
+\begin{center}
+\begin{tabular}{|c|r|r|r|} \hline
+次元 & Enumeration & BnB & Parallel BnB \\ \hline
+2 & 0.0033 & 0.0062 & 0.0055 \\
+3 & 0.23 & 0.24 & 0.20 \\
+4 & 8.16 & 6.29 & 2.36 \\
+5 & 276.75 & 168.24 & 65.34 \\ 
+6 & - & - & 1134.25 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{graphs/f_2_time.pdf}
+\caption{目的関数が $ f_2 $ のときの次元ごとの各アルゴリズムの実行時間}
+\label{fig:f_2_time}
+\end{center}
+\end{figure}
+
+\newpage
+
+\begin{table}[h]
+\caption{目的関数が $ f_1 $ のときの，下界によって刈り込まれたノードの数}
+\label{tbl:f_1_eliminated}
+\begin{center}
+\begin{tabular}{|c|r|r|r|} \hline
+次元 & 刈り込まれたノードの数 & ノードの最大数 & 刈り込まれたノードの割合 \\ \hline
+2 & 0 & 201 & 0\% \\
+3 & 3,781 & 10,301 & 36.71\% \\
+4 & 244,326 & 353,701 & 69.08\% \\
+5 & 7,739,229 & 9,196,251 & 84.16\% \\
+6 & 175,321,588 & 193,121,291 & 90.78\% \\
+7 & 3,221,353,517 & 3,411,809,491 & 94.42\% \\
+8 & 50,348,126,591 & 52,151,945,091 & 96.54\% \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=14cm]{graphs/f_1_eliminated}
+\caption{目的関数が $ f_1 $ のときの，下界によって刈り込まれたノードの割合}
+\label{fig:f_1_eliminated}
+\end{center}
+\end{figure}
+
+\newpage
+
+\begin{table}[h]
+\caption{目的関数が $ f_2 $ のときの，下界によって刈り込まれたノードの数}
+\label{tbl:f_2_eliminated}
+\begin{center}
+\begin{tabular}{|c|r|r|r|} \hline
+次元 & 刈り込まれたノードの数 & ノードの最大数 & 刈り込まれたノードの割合 \\ \hline
+2 & 0 & 201 & 0\% \\
+3 & 379 & 10,301 & 3.68\% \\
+4 & 63,177 & 353,701 & 17.86\% \\
+5 & 2,817,758 & 9,196,251 & 30.64\% \\
+6 & 89,770,014 & 193,121,291 & 46.48\% \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=14cm]{graphs/f_2_eliminated}
+\caption{目的関数が $ f_2 $ のときの，下界によって刈り込まれたノードの割合}
+\label{fig:f_2_eliminated}
+\end{center}
+\end{figure}
 
 \chapter{結論}
 
-% TODO: 書く
-TODO: 書く
+本研究では単体上における単調関数の最適化を行った．本問題はこれまであまり研究されていないため，まずは問題の解析を行った．単体における下界が得られる関数を単調関数に変換することができることを示し，単体上の単調関数として最適化を行うことで，変換前の問題を解くことができることがわかった．それによって，本問題の困難さと一般性を示した．\par
+単体をグリッド化して最適化を行う de Klerk の手法を利用して，グリッド化した単体上での分枝限定法を構築した．また限定操作で利用する下界には，目的関数を単調関数としたことで得られた単体における下界を採用した．さらに，本アルゴリズムが多項式時間アルゴリズムであることを示した．また，下界が有効に働くことを実験によって確かめ，本手法が既存手法よりも実行時間が短いことを示した．\par
+最後に今後の課題として，単体上における単調関数のよりよい下界を発見すること，より効率のよい分枝規則を発見することを挙げる．\par
 
 \chapter*{謝辞}
 \addcontentsline{toc}{chapter}{\numberline{}謝辞}
 
-% TODO: 書く
-TODO: 書く
+本研究を進めるにあたり，多くの指導を頂いた久野誉人先生，佐野良夫先生に深く感謝いたします．また，様々な議論を通じて多くの知識や示唆を頂いたシステム数理研究室の皆様に感謝します．
 
 \newpage
 
@@ -675,23 +806,28 @@ TODO: 書く
 
 \begin{thebibliography}{1}
 
+\bibitem{bagirov}
+A. Bagirov, A. Rubinov,
+\newblock Global minimization of increasing positively homogeneous functions over the unit simplex,
+\newblock Annals of Operations Research 98.1-4 (2000), pp. 171-187.
+
 \bibitem{bomze}
-IM Bomze, and E De Klerk,
+I. Bomze, and E. de Klerk,
 \newblock Solving standard quadratic optimization problems via linear, semidefinite and copositive programming,
 \newblock Journal of Global Optimization 24.2 (2002), pp. 163-185.
 
 \bibitem{deklerk_survey}
-E De Klerk,
+E. de Klerk,
 \newblock The complexity of optimizing over a simplex, hypercube or sphere: a short survey,
 \newblock Central European Journal of Operations Research 16.2 (2008), pp. 111-125.
 
 \bibitem{deklerk}
-E De Klerk, D Den Hertog, and G. Elabwabi,
+E. de Klerk, D. Hertog, and G. Elabwabi,
 \newblock On the complexity of optimization over the standard simplex,
 \newblock European journal of operational research 191.3 (2008), pp. 773-785.
 
 \bibitem{direct}
-DR Jones, CD Perttunen, and BE Stuckman,
+D. Jones, C. Perttunen, and B. Stuckman,
 \newblock Lipschitzian optimization without the Lipschitz constant,
 \newblock Journal of Optimization Theory and Applications 79.1 (1993), pp. 157-181.
 
@@ -701,7 +837,7 @@ J. Pinter,
 \newblock Kluwer Academic Publishers, Volume 6, (1996).
 
 \bibitem{disimpl}
-P Remigijus, and J Zilinskas,
+P. Remigijus, and J. Zilinskas,
 \newblock Simplicial Lipschitz Optimization Without Lipschitz Constant,
 \newblock Simplicial Global Optimization (2014), pp. 61-86.
 
@@ -719,6 +855,7 @@ H. Tuy,
 外崎真造,
 \newblock 非凸2次制約付き配合計画問題のロバスト最適化,
 \newblock 筑波大学システム情報工学研究科修士学位論文 (2010)
+
 \end{thebibliography}
 
 \end{document}
