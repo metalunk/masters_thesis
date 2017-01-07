@@ -2,10 +2,10 @@
 \contentsline {section}{\numberline {1.1}記号の定義}{1}
 \contentsline {section}{\numberline {1.2}構成}{2}
 \contentsline {chapter}{\numberline {第2章}単体上の単調関数最適化問題}{3}
-\contentsline {section}{\numberline {2.1}単調関数}{3}
-\contentsline {section}{\numberline {2.2}単体}{4}
+\contentsline {section}{\numberline {2.1}単調関数の定義とその性質}{3}
+\contentsline {section}{\numberline {2.2}単体の定義とその性質}{4}
 \contentsline {section}{\numberline {2.3}単体上の単調関数の性質}{5}
-\contentsline {section}{\numberline {2.4}単体上の任意の関数から単調関数への変換}{5}
+\contentsline {section}{\numberline {2.4}単体上の関数から単調関数への変換}{5}
 \contentsline {section}{\numberline {2.5}単調関数の単体上における下界}{9}
 \contentsline {chapter}{\numberline {第3章}関連研究}{11}
 \contentsline {section}{\numberline {3.1}単体のグリッド化}{11}
@@ -14,19 +14,19 @@
 \contentsline {subsection}{\numberline {3.3.1}分割の手順}{13}
 \contentsline {subsection}{\numberline {3.3.2}部分問題のグリッド数}{15}
 \contentsline {subsection}{\numberline {3.3.3}分割数の性質}{16}
-\contentsline {chapter}{\numberline {第4章}提案する方法}{17}
+\contentsline {chapter}{\numberline {第4章}グリッド化した単体上の分枝限定法}{17}
 \contentsline {section}{\numberline {4.1}分割する次元の選択}{17}
 \contentsline {section}{\numberline {4.2}単体の保持}{18}
 \contentsline {subsection}{\numberline {4.2.1}二分木の構成}{18}
 \contentsline {subsection}{\numberline {4.2.2}二分木から問題を生成する方法}{19}
 \contentsline {section}{\numberline {4.3}低次元の単体の処理}{20}
 \contentsline {section}{\numberline {4.4}アルゴリズム}{20}
-\contentsline {section}{\numberline {4.5}並列化}{22}
-\contentsline {section}{\numberline {4.6}計算量の解析}{22}
-\contentsline {chapter}{\numberline {第5章}実験}{23}
-\contentsline {section}{\numberline {5.1}実験の条件}{23}
-\contentsline {section}{\numberline {5.2}問題}{23}
-\contentsline {section}{\numberline {5.3}実験結果}{24}
-\contentsline {chapter}{\numberline {第6章}結論}{29}
-\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }謝辞}{30}
-\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }参考文献}{31}
+\contentsline {section}{\numberline {4.5}並列化}{21}
+\contentsline {section}{\numberline {4.6}計算量の解析}{21}
+\contentsline {chapter}{\numberline {第5章}実験}{24}
+\contentsline {section}{\numberline {5.1}実験の条件}{24}
+\contentsline {section}{\numberline {5.2}問題}{24}
+\contentsline {section}{\numberline {5.3}実験結果}{25}
+\contentsline {chapter}{\numberline {第6章}結論}{31}
+\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }謝辞}{32}
+\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }参考文献}{33}

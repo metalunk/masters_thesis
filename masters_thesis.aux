@@ -1,21 +1,23 @@
 \relax 
 \citation{deklerk_survey}
 \citation{tuy}
+\citation{tuy_survey}
 \citation{bomze}
 \@writefile{toc}{\contentsline {chapter}{\numberline {第1章}序論}{1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}記号の定義}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}構成}{2}}
+\citation{deklerk_survey}
 \@writefile{toc}{\contentsline {chapter}{\numberline {第2章}単体上の単調関数最適化問題}{3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}単調関数}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}単調関数の定義とその性質}{3}}
 \newlabel{prop:keeping_monotonicity}{{1}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}単体}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}単体の定義とその性質}{4}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}単体上の単調関数の性質}{5}}
 \newlabel{prop:inequality_on_simplex}{{2}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}単体上の任意の関数から単調関数への変換}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}単体上の関数から単調関数への変換}{5}}
 \newlabel{prop:a_x_is_simplex}{{3}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces ある点 $ x $ に対する $ A_x = \Set  {x' \in c \Delta _n | x' \geq x} $}}{7}}
 \newlabel{fig:a_on_simplex}{{2.1}{7}}
@@ -49,7 +51,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}分割数の性質}{16}}
 \newlabel{sec:number_of_partition}{{3.3.3}{16}}
 \newlabel{thm:total_node}{{3}{16}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {第4章}提案する方法}{17}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {第4章}グリッド化した単体上の分枝限定法}{17}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}分割する次元の選択}{17}}
@@ -68,47 +70,49 @@
 \@writefile{toc}{\contentsline {section}{\numberline {4.4}アルゴリズム}{20}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Line search}}{21}}
 \newlabel{algo:line_search}{{3}{21}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Optimize monotonic function on simplex}}{21}}
-\newlabel{algo:main}{{4}{21}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}並列化}{22}}
-\newlabel{sec:parallel}{{4.5}{22}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}計算量の解析}{22}}
-\newlabel{sec:analysis}{{4.6}{22}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}並列化}{21}}
+\newlabel{sec:parallel}{{4.5}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}計算量の解析}{21}}
+\newlabel{sec:analysis}{{4.6}{21}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Optimize monotonic function on simplex}}{22}}
+\newlabel{algo:main}{{4}{22}}
 \citation{bagirov}
-\@writefile{toc}{\contentsline {chapter}{\numberline {第5章}実験}{23}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {第5章}実験}{24}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}実験の条件}{23}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}問題}{23}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}実験結果}{24}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces 目的関数が $ f_1 $ のときの次元ごとの各アルゴリズムの実行時間 (秒)}}{25}}
-\newlabel{tbl:f_1_table}{{5.1}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces 目的関数が $ f_1 $ のときの次元ごとの各アルゴリズムの実行時間}}{25}}
-\newlabel{fig:f_1_time}{{5.1}{25}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces 目的関数が $ f_2 $ のときの次元ごとの各アルゴリズムの実行時間 (秒)}}{26}}
-\newlabel{tbl:f_2_table}{{5.2}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces 目的関数が $ f_2 $ のときの次元ごとの各アルゴリズムの実行時間}}{26}}
-\newlabel{fig:f_2_time}{{5.2}{26}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces 目的関数が $ f_1 $ のときの，下界によって刈り込まれたノードの数}}{27}}
-\newlabel{tbl:f_1_eliminated}{{5.3}{27}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces 目的関数が $ f_1 $ のときの，下界によって刈り込まれたノードの割合}}{27}}
-\newlabel{fig:f_1_eliminated}{{5.3}{27}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces 目的関数が $ f_2 $ のときの，下界によって刈り込まれたノードの数}}{28}}
-\newlabel{tbl:f_2_eliminated}{{5.4}{28}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces 目的関数が $ f_2 $ のときの，下界によって刈り込まれたノードの割合}}{28}}
-\newlabel{fig:f_2_eliminated}{{5.4}{28}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {第6章}結論}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}実験の条件}{24}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}問題}{24}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}実験結果}{25}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces $ f_1 $ の各アルゴリズムの実行時間 (秒)}}{27}}
+\newlabel{tbl:f_1_table}{{5.1}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces $ f_1 $ の各アルゴリズムの実行時間}}{27}}
+\newlabel{fig:f_1_time}{{5.1}{27}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces $ f_2 $ の各アルゴリズムの実行時間 (秒)}}{28}}
+\newlabel{tbl:f_2_table}{{5.2}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces $ f_2 $ の各アルゴリズムの実行時間}}{28}}
+\newlabel{fig:f_2_time}{{5.2}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces $ f_1 $ の下界によって刈り込まれたノードの数}}{29}}
+\newlabel{tbl:f_1_eliminated}{{5.3}{29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces $ f_1 $ の下界によって刈り込まれたノードの割合}}{29}}
+\newlabel{fig:f_1_eliminated}{{5.3}{29}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces $ f_2 $ の下界によって刈り込まれたノードの数}}{30}}
+\newlabel{tbl:f_2_eliminated}{{5.4}{30}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces $ f_2 $ の下界によって刈り込まれたノードの割合}}{30}}
+\newlabel{fig:f_2_eliminated}{{5.4}{30}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {第6章}結論}{31}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }謝辞}{30}}
+\@writefile{toc}{\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }謝辞}{32}}
 \bibcite{bagirov}{1}
 \bibcite{bomze}{2}
 \bibcite{deklerk_survey}{3}
 \bibcite{deklerk}{4}
-\bibcite{direct}{5}
-\bibcite{pinter}{6}
-\bibcite{disimpl}{7}
-\bibcite{rubinov}{8}
-\bibcite{tuy}{9}
-\bibcite{tonosaki}{10}
-\@writefile{toc}{\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }参考文献}{31}}
+\bibcite{deklerk_alternative}{5}
+\bibcite{direct}{6}
+\bibcite{pinter}{7}
+\bibcite{disimpl}{8}
+\bibcite{rubinov}{9}
+\bibcite{tuy}{10}
+\bibcite{tuy_survey}{11}
+\bibcite{tonosaki}{12}
+\@writefile{toc}{\contentsline {chapter}{\hbox to\@lnumwidth {\hfil }参考文献}{33}}

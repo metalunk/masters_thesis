@@ -8,8 +8,8 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces $ n = 3, m = 3 $ の問題を解いたときの二分木 $ T $ の例}}{19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces 目的関数が $ f_1 $ のときの次元ごとの各アルゴリズムの実行時間}}{25}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces 目的関数が $ f_2 $ のときの次元ごとの各アルゴリズムの実行時間}}{26}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces 目的関数が $ f_1 $ のときの，下界によって刈り込まれたノードの割合}}{27}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces 目的関数が $ f_2 $ のときの，下界によって刈り込まれたノードの割合}}{28}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces $ f_1 $ の各アルゴリズムの実行時間}}{27}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces $ f_2 $ の各アルゴリズムの実行時間}}{28}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces $ f_1 $ の下界によって刈り込まれたノードの割合}}{29}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces $ f_2 $ の下界によって刈り込まれたノードの割合}}{30}
 \addvspace {10\p@ }
