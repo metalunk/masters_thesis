@@ -238,10 +238,10 @@ A_x = & \; \Set{x' \in c \Delta_n | x' \geq x} \\
 = & \; \Set{x' \in \mathbb{R}_+^n | \sum_{i = 1}^{n} x'_i = c, \; x' \geq x}
 \end{align*}
 あらたに変数 $ y \in \mathbb{R}_+^n $ を用意し $ y = x' - x $ とすると，
-$$ A_x = \Set{y \in \mathbb{R}_+^n | \sum_{i = 1}^{n} y_i = c - \sum_{i = 1}^{n} x_i} $$
+$$ A_x = \Set{y \in \mathbb{R}_+^n | \sum_{i = 1}^{n} y_i = c - \sum_{i = 1}^{n} x_i} - x $$
 $ c' = c - \sum_{i = 1}^{n} x_i $ とすると，
-$$ A_x = \Set{y \in c' \Delta_n} $$
-よって $ A_x $ は単体である．
+$$ A_x = \Set{y \in c' \Delta_n} - x $$
+よって $ A_x $ は各辺の大きさが $ c' $ であるような単体を $ x $ だけ並行移動したものであり，$ A_x $ は単体である．
 \end{proof}
 
 \end{proposition}
