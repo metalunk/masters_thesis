@@ -1,15 +1,15 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces ある点 $ x $ に対する $ A_x = \Set {x' \in c \Delta _n | x' \geq x} $}}{7}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces $ (0.7, 0.3, 0)^T, (0, 1, 0)^T, (0, 0.3, 0.7)^T $ を頂点に持つような単体の下界を与える点}}{10}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces ある点 $ x $ に対する $ D_x = \Set {x' \in c \Delta _n | x' \geq x} $}}{7}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces $ (0.7, 0.3, 0)^T, (0, 1, 0)^T, (0, 0.3, 0.7)^T $ を頂点に持つような単体の下界を与える点}}{11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces グリッド化された単体 $ G(1, 4, 2) $}}{12}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces 2つに分割されたグリッド化された単体}}{16}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces グリッド化された単体 $ G(1, 4, 2) $}}{13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 2つに分割されたグリッド化された単体}}{17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces $ n = 3, m = 3 $ の問題を解いたときの二分木 $ T $ の例}}{20}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces $ n = 3, m = 3 $ の問題を解いたときの二分木 $ T $ の例}}{21}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces $ f_1 $ の各アルゴリズムの実行時間}}{28}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces $ f_2 $ の各アルゴリズムの実行時間}}{29}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces $ f_1 $ の下界によって刈り込まれたノードの割合}}{30}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces $ f_2 $ の下界によって刈り込まれたノードの割合}}{31}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces $ f_1 $ の各アルゴリズムの実行時間}}{29}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces $ f_2 $ の各アルゴリズムの実行時間}}{30}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces $ f_1 $ の下界によって刈り込まれたノードの割合}}{31}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces $ f_2 $ の下界によって刈り込まれたノードの割合}}{32}
 \addvspace {10\p@ }

@@ -3,8 +3,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces $ f_1 $ の各アルゴリズムの実行時間 (秒)}}{28}
-\contentsline {table}{\numberline {5.2}{\ignorespaces $ f_2 $ の各アルゴリズムの実行時間 (秒)}}{29}
-\contentsline {table}{\numberline {5.3}{\ignorespaces $ f_1 $ の下界によって刈り込まれたノードの数}}{30}
-\contentsline {table}{\numberline {5.4}{\ignorespaces $ f_2 $ の下界によって刈り込まれたノードの数}}{31}
+\contentsline {table}{\numberline {5.1}{\ignorespaces $ f_1 $ の各アルゴリズムの実行時間 (秒)}}{29}
+\contentsline {table}{\numberline {5.2}{\ignorespaces $ f_2 $ の各アルゴリズムの実行時間 (秒)}}{30}
+\contentsline {table}{\numberline {5.3}{\ignorespaces $ f_1 $ の下界によって刈り込まれたノードの数}}{31}
+\contentsline {table}{\numberline {5.4}{\ignorespaces $ f_2 $ の下界によって刈り込まれたノードの数}}{32}
 \addvspace {10\p@ }
